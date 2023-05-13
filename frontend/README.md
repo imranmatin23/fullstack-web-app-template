@@ -16,6 +16,20 @@ Starts the test runner.
 
 Bundles the app into static files for production into the `build/` directory.
 
+## Reference Commands
+
+These were the commands used in the inital setup of the frontend.
+
+```bash
+# Create the frontend React App
+npx create-react-app frontend
+# Enter React App
+cd frontend
+# Install dependencies
+npm install react-router-dom
+npm install axios
+```
+
 # Suggestions
 
 - Add new routes in `src/App.js`.
