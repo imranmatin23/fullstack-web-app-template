@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import "../styles/HomePage.css";
 
 function HomePage() {
   axios
@@ -13,7 +14,7 @@ function HomePage() {
 
   return (
     <div className="home">
-      <div className="about">
+      <div>
         <h2> Fullstack Web App Template</h2>
       </div>
       <p>
