@@ -1,9 +1,31 @@
-# Getting Started with Create React App
+# Frontend
 
-```bash
-npm start
-npm test
-npm run build
-```
+The frontend was created using the `create-react-app` CLI.
 
-package.json --> proxy
+## Available Commands
+
+### `npm start`
+
+Starts the development server at http://127.0.0.1:3000.
+
+### `npm test`
+
+Starts the test runner.
+
+### `npm run build`
+
+Bundles the app into static files for production into the `build/` directory.
+
+# Suggestions
+
+- Add new routes in `src/App.js`.
+- Add new pages in `src/pages/`.
+- Add new styles for pages in `src/styles/`.
+- Update the web app's metadata (e.g. favicon) in `public/`.
+- To change the backend endpoint to use in the Axios HTTP requests, update the `proxy` key in `package.json`.
+
+# References
+
+[1] [Digital Ocean Create React App Tutorial](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-react-project-with-create-react-app) \
+[2] [React Documentation](https://react.dev) \
+[3] [Legacy React Documentation](https://legacy.reactjs.org)
