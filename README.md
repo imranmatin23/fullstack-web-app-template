@@ -29,14 +29,23 @@ pip install -r requirements.txt
 
 ### Step 3: Run the backend
 
+Runs the backend webserver at http://127.0.0.1:8000. Visit http://127.0.0.1:8000/api/room to see a Django created API page.
+
 ```bash
-python manage.py runserver # Runs the backend webserver at http://127.0.0.1:8000
+cd backend
+python manage.py migrate
+python manage.py makemigrations
+python manage.py runserver
 ```
 
 ### Step 4: Run the frontend
 
+Runs the frontend webserver at http://127.0.0.1:3000. Open the Javascript console in your browser to see the number of rooms in the database (the data was retrieved using GET HTTP request to backend from the frontend Home Page).
+
 ```bash
-npm start # Runs the frontend webserver at http://127.0.0.1:3000
+cd frontend
+npm install
+npm start
 ```
 
 ### Step 5: Begin coding
