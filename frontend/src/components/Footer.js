@@ -1,3 +1,7 @@
+/*
+ * This file defines the Footer component.
+ */
+
 import React from "react";
 import "../styles/Footer.css";
 

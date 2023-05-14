@@ -1,8 +1,15 @@
+/*
+ * This file defines the HomePage page.
+ */
+
 import React from "react";
 import axios from "axios";
 import "../styles/HomePage.css";
 
 function HomePage() {
+  /*
+   * This is an example of how Axios can be used to make an HTTP GET request to a backend webserver.
+   */
   axios
     .get("/api/room")
     .then((response) =>
@@ -12,6 +19,9 @@ function HomePage() {
       console.error("There was an error!", error);
     });
 
+  /*
+   * This return statement contains the HTML to be returned and rendered in the browser.
+   */
   return (
     <div className="home">
       <div>
