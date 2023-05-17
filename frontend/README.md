@@ -16,6 +16,10 @@ Starts the test runner.
 
 Bundles the app into static files for production into the `build/` directory.
 
+### `npm run relocate`
+
+Bundles the app into static files for production into the `build/` directory and moves them into the `backend/` directory.
+
 ## Reference Commands
 
 These were the commands used in the inital setup of the frontend.

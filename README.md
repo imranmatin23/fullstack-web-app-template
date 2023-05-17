@@ -48,6 +48,13 @@ npm install
 npm start
 ```
 
+Alternatively you can run both the frontend and the backend from the same server by executing the commands below. Those commands will build the frontend and move the resulting static build files to the backend. Therefore, only the backend server needs to be running.
+
+```bash
+cd frontend
+npm run relocate
+```
+
 ### Step 5: Begin coding
 
 `CTRL-F` for `TODO` to find where you can configure your web app.
