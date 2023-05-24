@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-zc2^18o88+97%4p6(r73j6c$6*kv_d*n9n!lr(6xog4-#(px4v"
+SECRET_KEY = "django-insecure-azoqct84568*ze5zs05kh$$m6z(#_#s&^n%)9mnc84o^do$fr1"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -43,7 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "corsheaders",
     "rest_framework",
-    "api",  # TODO: Change this if you use a different Django App
+    "root",
 ]
 
 MIDDLEWARE = [
@@ -62,8 +61,7 @@ ROOT_URLCONF = "backend.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        # Tell Django where to find Reacts index.html file in static build
-        "DIRS": [os.path.join(BASE_DIR, "build")],
+        "DIRS": [],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -125,11 +123,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
-
-# Tell Django where to look for React's static files (css, js) in static build
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "build/static"),
-]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

@@ -4,9 +4,9 @@ The frontend was created using the `django-admin` CLI.
 
 ## Available Commands
 
-### `python manage.py runserver`
+### `python manage.py runserver 127.0.0.1:80`
 
-Starts the development server at http://127.0.0.1:8000.
+Starts the development server at http://127.0.0.1:80.
 
 ### `python manage.py makemigrations`
 
@@ -26,6 +26,7 @@ source .venv/bin/activate
 # Install dependencies
 pip install --upgrade pip
 pip install django
+pip install gunicorn
 pip install djangorestframework
 pip install django-cors-headers
 pip install pylint
@@ -35,7 +36,7 @@ django-admin startproject backend
 # Enter Django Project
 cd backend
 # Create Django App in Django Project
-django-admin startapp api
+django-admin startapp root
 ```
 
 # Suggestions
