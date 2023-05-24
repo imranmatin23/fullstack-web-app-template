@@ -4,21 +4,13 @@ The frontend was created using the `create-react-app` CLI.
 
 ## Available Commands
 
-### `npm start`
+### `npm run start`
 
 Starts the development server at http://127.0.0.1:3000.
-
-### `npm test`
-
-Starts the test runner.
 
 ### `npm run build`
 
 Bundles the app into static files for production into the `build/` directory.
-
-### `npm run relocate`
-
-Bundles the app into static files for production into the `build/` directory and moves them into the `backend/` directory.
 
 ## Reference Commands
 
