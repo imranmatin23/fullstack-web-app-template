@@ -14,11 +14,8 @@ COPY . .
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-# Collect static files into the static folder
-RUN ./manage.py collectstatic --noinput
-
 # Expose the port on the container for Django App
 EXPOSE 80
 
 # Run the entrypoint script
-CMD ["./entrypoint.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
