@@ -25,17 +25,21 @@ $(VENV): backend/requirements.txt ## Create .venv Python3 virtual environment
 
 build-backend: ## Builds a Docker image of backend webserver
 	cd backend; \
-	docker build -t fullstack-web-app-template .; \
+	docker build -t fullstack-web-app-template-backend .; \
 	cd ../
 
 run-backend: build-backend ## Runs a Docker image of backend webserver
 	cd backend; \
-	docker run -d --name fullstack-web-app-template -p 80:80 fullstack-web-app-template; \
+	docker run -d --name fullstack-web-app-template-backend -p 80:80 fullstack-web-app-template-backend; \
 	cd ../
 
 stop-backend: ## Stops a Docker image of backend webserver
-	docker stop fullstack-web-app-template
-	docker rm fullstack-web-app-template
+	docker stop fullstack-web-app-template-backend
+	docker rm fullstack-web-app-template-backend
 
 logs-backend: ## Prints the last 100 lines of the running Docker container
-	docker logs fullstack-web-app-template -n 100
+	docker logs fullstack-web-app-template-backend -n 100
+
+push-backend: build-backend ## Pushes a built Docker image of backend webserver to ECR
+	docker tag fullstack-web-app-template-backend:latest 775627766428.dkr.ecr.us-west-2.amazonaws.com/fullstack-web-app-template-backend:latest; \
+	docker push 775627766428.dkr.ecr.us-west-2.amazonaws.com/fullstack-web-app-template-backend:latest

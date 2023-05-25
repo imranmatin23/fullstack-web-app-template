@@ -8,10 +8,6 @@ The frontend was created using the `create-react-app` CLI.
 
 Starts the development server at http://127.0.0.1:3000.
 
-### `npm run build`
-
-Bundles the app into static files for production into the `build/` directory.
-
 ## Reference Commands
 
 These were the commands used in the inital setup of the frontend.
@@ -32,7 +28,7 @@ npm install axios
 - Add new pages in `src/pages/`.
 - Add new styles for pages in `src/styles/`.
 - Update the web app's metadata (e.g. favicon) in `public/`.
-- To change the backend endpoint to use in the Axios HTTP requests, update the `proxy` key in `package.json`.
+- To change the backend endpoint to use in the Axios HTTP requests, update the `REACT_APP_BACKEND_URL` in `.env`.
 
 # References
 

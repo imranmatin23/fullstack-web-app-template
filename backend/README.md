@@ -1,12 +1,12 @@
 # Backend
 
-The frontend was created using the `django-admin` CLI.
+The backend was created using the `django-admin` CLI.
 
 ## Available Commands
 
-### `python manage.py runserver 127.0.0.1:80`
+### `make run-backend`
 
-Starts the development server at http://127.0.0.1:80.
+Builds the Docker image for the backend and runs it as a container at http://127.0.0.1:80.
 
 ### `python manage.py makemigrations`
 
@@ -47,7 +47,7 @@ django-admin startapp root
 - Add new serializers for the `api` app in `api/serializers.py`.
 - Add new models for the `api` app in `api/models.py`.
 - To create a new Django App in the `backend` Django Project, execute `django-admin startapp [APP_NAME]`. Make sure to add the new App's endpoints to `backend/urls.py`.
-- To configure the backend's settings (e.g. database) edit `backend/settings.py`.
+- To configure the backend's settings (e.g. database) edit `backend/settings.py` and the ENV vars in `.env`.
 
 # References
 
