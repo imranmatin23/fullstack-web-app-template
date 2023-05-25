@@ -63,3 +63,4 @@ npm run relocate
 
 [1] https://dev.to/daiquiri_team/deploying-django-application-on-aws-with-terraform-minimal-working-setup-587g
 [2] https://medium.com/@Markus.Hanslik/setting-up-an-ssl-certificate-using-aws-and-terraform-198c6fb90743
+[3] https://testdriven.io/blog/dockerizing-django-with-postgres-gunicorn-and-nginx
