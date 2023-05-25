@@ -58,7 +58,7 @@ module "amplify_app" {
   domain_config = {
     domain_name            = var.domain_name
     enable_auto_sub_domain = true
-    wait_for_verification  = false
+    wait_for_verification  = true
     sub_domain = [
       {
         branch_name = "main"
