@@ -22,3 +22,19 @@ variable "route53_hosted_zone_id" {
 variable "domain_name" {
   description = "The domain name for the service"
 }
+
+variable "secret_key" {
+  description = "The secret key for the service"
+}
+
+variable "debug" {
+  description = "The debug flag for the service"
+}
+
+variable "allowed_hosts" {
+  description = "The allowed hosts for the service"
+}
+
+variable "test" {
+  description = "A test variable"
+}

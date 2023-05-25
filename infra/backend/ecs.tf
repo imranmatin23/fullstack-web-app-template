@@ -19,6 +19,10 @@ resource "aws_ecs_task_definition" "prod_backend_web" {
       image      = aws_ecr_repository.backend.repository_url
       log_group  = aws_cloudwatch_log_group.prod_backend.name
       log_stream = aws_cloudwatch_log_stream.prod_backend_web.name
+      secret_key  = var.secret_key
+      debug = var.debug
+      allowed_hosts = var.allowed_hosts
+      test = var.test
     },
   )
   execution_role_arn = aws_iam_role.ecs_task_execution.arn
