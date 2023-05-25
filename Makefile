@@ -15,11 +15,6 @@ run-frontend: ## Run frontend web server in developement mode
 	npm run start; \
 	cd ../
 
-build-frontend: ## Builds the frontend and moves output to the build/ folder
-	cd frontend; \
-	npm run build; \
-	cd ../
-
 ### Backend
 
 $(VENV): backend/requirements.txt ## Create .venv Python3 virtual environment

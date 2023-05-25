@@ -21,3 +21,7 @@ variable "domain_name" {
 variable "sub_domain_prefix" {
   description = "Subdomain to use"
 }
+
+variable "backend_url" {
+  description = "The url for the backend"
+}

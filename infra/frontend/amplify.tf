@@ -25,6 +25,7 @@ module "amplify_app" {
                 - npm ci
             build:
               commands:
+                - echo "REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL" >> .env
                 - npm run build
           artifacts:
             baseDirectory: build
@@ -39,6 +40,7 @@ module "amplify_app" {
   environment_variables = {
     AMPLIFY_MONOREPO_APP_ROOT = "frontend"
     AMPLIFY_DIFF_DEPLOY = "false"
+    REACT_APP_BACKEND_URL = var.backend_url
   }
 
   environments = {
