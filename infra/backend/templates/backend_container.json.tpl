@@ -23,7 +23,7 @@
       {
         "name": "ALLOWED_HOSTS",
         "value": "${allowed_hosts}"
-      },
+      }
     ],
     "logConfiguration": {
       "logDriver": "awslogs",
