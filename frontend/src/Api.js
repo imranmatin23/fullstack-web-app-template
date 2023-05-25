@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: `http://api.template.imranmatin.com:80`,
+  baseURL: `https://api.template.imranmatin.com`,
 });
