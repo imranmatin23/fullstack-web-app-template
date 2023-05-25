@@ -29,6 +29,7 @@ pip install django
 pip install gunicorn
 pip install djangorestframework
 pip install django-cors-headers
+pip install whitenoise
 pip install pylint
 pip install black
 # Create Django Project
