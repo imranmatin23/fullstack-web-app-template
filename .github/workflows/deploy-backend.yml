@@ -59,7 +59,6 @@ jobs:
         run: |
           cd infra/backend
           terraform plan -out terraform.tfplan
-        run: 
 
       # apply previously generated Terraform Plan
       # from the terraform.tfplan file in the branch
