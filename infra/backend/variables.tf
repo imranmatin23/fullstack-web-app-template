@@ -34,7 +34,3 @@ variable "debug" {
 variable "allowed_hosts" {
   description = "The allowed hosts for the service"
 }
-
-variable "test" {
-  description = "A test variable"
-}

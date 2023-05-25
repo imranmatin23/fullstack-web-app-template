@@ -17,7 +17,13 @@ import environ
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Load the environment variables
-env = environ.Env()
+env = environ.Env(
+    SECRET_KEY=(str),
+    DEBUG=(bool),
+    CORS_ORIGIN_ALLOW_ALL=(bool),
+    ALLOWED_HOSTS=(str),
+)
+
 env_path = BASE_DIR / ".env"
 if env_path.is_file():
     environ.Env.read_env(env_file=str(env_path))
@@ -25,21 +31,17 @@ if env_path.is_file():
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# DEBUG
-TEST = env("TEST")
-print(f"The value of the environment variable TEST = {TEST}")
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG")
 
-# TODO: for all domains - only for development
+# Define Allowed Hosts
 ALLOWED_HOSTS = env("ALLOWED_HOSTS").split(" ")
 
-# TODO: Enable/Disable CORS
-CORS_ORIGIN_ALLOW_ALL = True
+# Enable/Disable CORS
+CORS_ORIGIN_ALLOW_ALL = env("CORS_ORIGIN_ALLOW_ALL")
 
 # Application definition
 

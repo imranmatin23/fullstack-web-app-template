@@ -24,10 +24,6 @@
         "name": "ALLOWED_HOSTS",
         "value": "${allowed_hosts}"
       },
-      {
-        "name": "TEST",
-        "value": "${test}"
-      }
     ],
     "logConfiguration": {
       "logDriver": "awslogs",

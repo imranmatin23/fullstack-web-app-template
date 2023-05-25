@@ -22,7 +22,6 @@ resource "aws_ecs_task_definition" "prod_backend_web" {
       secret_key  = var.secret_key
       debug = var.debug
       allowed_hosts = var.allowed_hosts
-      test = var.test
     },
   )
   execution_role_arn = aws_iam_role.ecs_task_execution.arn
