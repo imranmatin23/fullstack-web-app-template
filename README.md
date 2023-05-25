@@ -13,3 +13,9 @@ The backend was created using the `django-admin` CLI. See [backend/README.md](ba
 ## Infrastructure
 
 The infrastructure was created using `terraform` and `AWS`. See [infra/README.md](infra/README.md) for further details about the infrastructure.
+
+## TODO
+
+1. Local/Production integration with PostgreSQL.
+2. Add CI/CD for frontend/backend.
+3. Add testing (unit, integration, canary, etc.) for frontend/backend.
