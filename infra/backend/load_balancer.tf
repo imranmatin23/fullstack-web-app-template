@@ -27,10 +27,12 @@ resource "aws_lb_target_group" "prod_backend" {
 }
 
 # Target listener for http:80
-resource "aws_lb_listener" "prod_http" {
+resource "aws_lb_listener" "prod_https" {
   load_balancer_arn = aws_lb.prod.id
-  port              = "80"
-  protocol          = "HTTP"
+  port              = "443"
+  protocol          = "HTTPS"
+  certificate_arn = aws_acm_certificate.prod_certificate.arn
+  ssl_policy        = "ELBSecurityPolicy-2016-08"
   depends_on        = [aws_lb_target_group.prod_backend]
 
   default_action {
