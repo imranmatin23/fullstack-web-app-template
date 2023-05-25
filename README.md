@@ -10,6 +10,6 @@ The frontend was created using the `create-react-app` CLI. See [frontend/README.
 
 The backend was created using the `django-admin` CLI. See [backend/README.md](backend/README.md) for further details about the backend.
 
-# Resources
+## Infrastructure
 
-[1] TODO
+The infrastructure was created using `terraform` and `AWS`. See [infra/README.md](infra/README.md) for further details about the infrastructure.
