@@ -25,7 +25,3 @@ variable "sub_domain_prefix" {
 variable "backend_url" {
   description = "The url for the backend"
 }
-
-variable "route53_hosted_zone_id" {
-  description = "The Route 53 Hosted Zone"
-}
