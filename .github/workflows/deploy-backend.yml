@@ -1,5 +1,5 @@
-name: Deploy to Amazon ECR
-run-name: Deploy ${{ github.sha }} to Amazon ECR
+name: Push to Amazon ECR and deploy to Amazon ECS using Terraform Apply
+run-name: ${{ github.sha }}
 
 on:
   push:
@@ -24,7 +24,7 @@ jobs:
 
       # https://aws.amazon.com/blogs/security/use-iam-roles-to-connect-github-actions-to-actions-in-aws/
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: arn:aws:iam::775627766428:role/ecr-image-push-role
           role-session-name: GitHub_to_AWS_via_FederatedOIDC
@@ -45,3 +45,18 @@ jobs:
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+      
+      - name: Setup Terraform
+            uses: hashicorp/setup-terraform@v2
+
+      - name: Terraform Init
+        run: terraform init
+
+      # generate Terraform Plan and store in .tfplan file
+      - name: Terraform Plan
+        run: terraform plan -out:terraform.tfplan
+
+      # apply previously generated Terraform Plan
+      # from the terraform.tfplan file in the branch
+      - name: Terraform Apply
+        run: terraform apply "terraform.tfplan"
