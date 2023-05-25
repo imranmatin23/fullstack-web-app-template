@@ -58,3 +58,8 @@ npm run relocate
 ### Step 5: Begin coding
 
 `CTRL-F` for `TODO` to find where you can configure your web app.
+
+# Resources
+
+[1] https://dev.to/daiquiri_team/deploying-django-application-on-aws-with-terraform-minimal-working-setup-587g
+[2] https://medium.com/@Markus.Hanslik/setting-up-an-ssl-certificate-using-aws-and-terraform-198c6fb90743
