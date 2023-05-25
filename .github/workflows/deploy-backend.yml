@@ -50,13 +50,20 @@ jobs:
         uses: hashicorp/setup-terraform@v2
 
       - name: Terraform Init
-        run: terraform init
+        run: |
+          cd infra/backend
+          terraform init
 
       # generate Terraform Plan and store in .tfplan file
       - name: Terraform Plan
-        run: terraform plan -out terraform.tfplan
+        run: |
+          cd infra/backend
+          terraform plan -out terraform.tfplan
+        run: 
 
       # apply previously generated Terraform Plan
       # from the terraform.tfplan file in the branch
       - name: Terraform Apply
-        run: terraform apply "terraform.tfplan"
+        run: |
+          cd infra/backend
+          terraform apply "terraform.tfplan"
