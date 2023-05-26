@@ -19,10 +19,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Clone the Repository
       - name: Checkout
         uses: actions/checkout@v3
 
-      # https://aws.amazon.com/blogs/security/use-iam-roles-to-connect-github-actions-to-actions-in-aws/
+      # Generate temporary AWS credentials by assuming a role (https://aws.amazon.com/blogs/security/use-iam-roles-to-connect-github-actions-to-actions-in-aws/)
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -30,39 +31,41 @@ jobs:
           role-session-name: GitHub_to_AWS_via_FederatedOIDC
           aws-region: ${{ env.AWS_REGION }}
 
-      # - name: Login to Amazon ECR
-      #   id: login-ecr
-      #   uses: aws-actions/amazon-ecr-login@v1
+      # Login to Amazon ECR
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
 
-      # - name: Build, tag, and push image to Amazon ECR
-      #   id: build-image
-      #   env:
-      #     ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-      #     IMAGE_TAG: latest
-      #   run: |
-      #     # Build a docker container and push it to ECR
-      #     cd backend
-      #     docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-      #     docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-      #     echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+      # Build, tag, and push the image to Amazon ECR
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: latest
+        run: |
+          cd backend
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
+      # Setup Terraform
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
 
+      # Initialize Terraform
       - name: Terraform Init
         run: |
           cd infra/backend
           terraform init
 
-      # generate Terraform Plan and store in .tfplan file
+      # Generate Terraform Plan and store in .tfplan file
       - name: Terraform Plan
         run: |
           cd infra/backend
-          terraform plan -out terraform.tfplan
+          terraform plan
 
-      # apply previously generated Terraform Plan
-      # from the terraform.tfplan file in the branch
+      # Apply previously generated Terraform Plan from the terraform.tfplan file in the branch
       - name: Terraform Apply
         run: |
           cd infra/backend
-          terraform apply "terraform.tfplan"
+          terraform apply
