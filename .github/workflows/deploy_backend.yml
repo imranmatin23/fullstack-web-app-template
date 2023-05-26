@@ -59,12 +59,12 @@ jobs:
           echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
       # Describe the Task Definition
-      - name: Download task definition
+      - name: Download ECS Task Definition
         run: |
           aws ecs describe-task-definition --task-definition ${{ env.TASK_DEFINITION }} --query taskDefinition > task-definition.json
 
       # Update the task definition with the newly pushed image
-      - name: Fill in the new image ID in the Amazon ECS task definition
+      - name: Update ECS Task Definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
@@ -73,7 +73,7 @@ jobs:
           image: ${{ steps.build-image.outputs.image }}
 
       # Deploy the image to the ECS Service
-      - name: Deploy Amazon ECS task definition
+      - name: Deploy new ECS Task Definition to ECS Service
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
