@@ -18,4 +18,6 @@ The infrastructure was created using `terraform` and `AWS`. See [infra/README.md
 
 1. Local/Production integration with PostgreSQL.
 2. Add CI/CD for frontend/backend.
+   - CI/CD for frontend is PENDING using Github Actions (deploy whenever push to main and changes in `backend/`).
+   - CI/CD for backend is COMPLETE using Github Actions (deploy whenever push to main and changes in `frontend/`).
 3. Add testing (unit, integration, canary, etc.) for frontend/backend.
