@@ -1,4 +1,4 @@
-name: Push to Amazon ECR and deploy to Amazon ECS using Terraform Apply
+name: Push to Amazon ECR and deploy to Amazon ECS
 run-name: ${{ github.sha }}
 
 on:
@@ -8,6 +8,10 @@ on:
 env:
   AWS_REGION: us-west-2
   ECR_REPOSITORY: fullstack-web-app-template-backend
+  TASK_DEFINITION: backend-web
+  CONTAINER_NAME: prod-backend-web
+  ECS_CLUSTER: prod
+  ECS_SERVICE: prod-backend-web
 
 permissions:
   id-token: write # This is required for requesting the JWT
@@ -48,24 +52,25 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
-      # Setup Terraform
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
-
-      # Initialize Terraform
-      - name: Terraform Init
+      # Describe the Task Definition
+      - name: Download task definition
         run: |
-          cd infra/backend
-          terraform init
+          aws ecs describe-task-definition --task-definition ${{ env.TASK_DEFINITION }} --query taskDefinition > task-definition.json
 
-      # Generate Terraform Plan and store in .tfplan file
-      - name: Terraform Plan
-        run: |
-          cd infra/backend
-          terraform plan
+      # Update the task definition with the newly pushed image
+      - name: Fill in the new image ID in the Amazon ECS task definition
+        id: task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: task-definition.json
+          container-name: ${{ env.CONTAINER_NAME }}
+          image: ${{ steps.build-image.outputs.image }}
 
-      # Apply previously generated Terraform Plan from the terraform.tfplan file in the branch
-      - name: Terraform Apply
-        run: |
-          cd infra/backend
-          terraform apply
+      # Deploy the image to the ECS Service
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: ${{ env.ECS_SERVICE }}
+          cluster: ${{ env.ECS_CLUSTER }}
+          wait-for-service-stability: true
