@@ -26,6 +26,12 @@ At this time there is no support for any stages besides `prod` and `local`.
 
 ## TODO
 
-1. Database: Local/Production integration with PostgreSQL.
-2. Testing: Add testing (unit, integration, canary, etc.) for frontend/backend.
-3. CI/CD: Add Alpha/Beta stages using only Github Actions (NOTE: GitHub Actions has a Workflow Visualizer that is the equivalent of a Pipeline Visualizer).
+1. CI/CD
+   - Add support for Infrastructure pipelines (`.github/workflows/deploy_backend_infra.yml`/`.github/workflows/deploy_frontend_infra.yml`).
+2. Database: Local/Production integration with PostgreSQL.
+3. Testing: Add testing (unit, integration, canary, etc.) for frontend/backend.
+4. Add Alpha/Beta stages
+   - Create Alpha/Beta infrastructure
+   - Add Alpha/Beta stages using only Github Actions (NOTE: GitHub Actions has a Workflow Visualizer that is the equivalent of a Pipeline Visualizer).
+   - Support Backend/Frontend App code reading from environment variables and AWS Secrets Manager
+   - Support Backend/Backend Infra code initializing environment variables
