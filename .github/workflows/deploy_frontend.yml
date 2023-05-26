@@ -1,4 +1,4 @@
-name: Deploy to Amazon Amplify
+name: Frontend Deploy
 run-name: ${{ github.sha }}
 
 on:

@@ -1,14 +1,13 @@
-name: Deploy Frontend Infrastructure using Terraform
+name: Frontend Infrastructure Deploy
 run-name: ${{ github.sha }}
 
 on:
   workflow_dispatch:
-  # Disable auto deploy on push to main and changes in infra/frontend/**
-  # push:
-  #   branches:
-  #     - main
-  #   paths:
-  #     - infra/frontend/**
+  push:
+    branches:
+      - main
+    paths:
+      - infra/frontend/**
 
 env:
   TF_VAR_region: ${{ vars.FRONTEND_INFRA_REGION }}
