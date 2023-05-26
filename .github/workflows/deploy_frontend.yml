@@ -1,46 +1,49 @@
-# name: Deploy to Amazon Amplify
-# run-name: ${{ github.sha }}
+name: Deploy to Amazon Amplify
+run-name: ${{ github.sha }}
 
-# on:
-#   push:
-#     branches: ["main"]
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - frontend/**
 
-# env:
-#   AWS_REGION: us-west-2
-#   REACT_APP_BACKEND_URL: https://api.template.imranmatin.com
-#   APP_ID: d122ihsxyi4grc
-#   BRANCH_NAME: main
+env:
+  AWS_REGION: us-west-2
+  REACT_APP_BACKEND_URL: https://api.template.imranmatin.com
+  APP_ID: d122ihsxyi4grc
+  BRANCH_NAME: main
 
-# permissions:
-#   id-token: write # This is required for requesting the JWT
-#   contents: read # This is required for actions/checkout
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read # This is required for actions/checkout
 
-# jobs:
-#   deploy:
-#     name: Deploy
-#     runs-on: ubuntu-latest
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
 
-#     steps:
-#       # Clone the Repository
-#       - name: Checkout
-#         uses: actions/checkout@v3
+    steps:
+      # Clone the Repository
+      - name: Checkout
+        uses: actions/checkout@v3
 
-#       # Generate temporary AWS credentials by assuming a role (https://aws.amazon.com/blogs/security/use-iam-roles-to-connect-github-actions-to-actions-in-aws/)
-#       - name: Configure AWS credentials
-#         uses: aws-actions/configure-aws-credentials@v2
-#         with:
-#           role-to-assume: arn:aws:iam::775627766428:role/ecr-image-push-role
-#           role-session-name: GitHub_to_AWS_via_FederatedOIDC
-#           aws-region: ${{ env.AWS_REGION }}
+      # Generate temporary AWS credentials by assuming a role (https://aws.amazon.com/blogs/security/use-iam-roles-to-connect-github-actions-to-actions-in-aws/)
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::775627766428:role/ecr-image-push-role
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          aws-region: ${{ env.AWS_REGION }}
 
-#       # Build the frontend
-#       - name: Build Frontend
-#         id: build-frontend
-#         run: |
-#           cd frontend
-#           echo "REACT_APP_BACKEND_URL=${{ env.REACT_APP_BACKEND_URL }}" >> .env
-#           npm ci
-#           npm run build
+      # Build the frontend
+      - name: Build Frontend
+        id: build-frontend
+        run: |
+          cd frontend
+          echo "REACT_APP_BACKEND_URL=${{ env.REACT_APP_BACKEND_URL }}" >> .env
+          npm ci
+          npm run build
 
 #       # Deploy to Amplify
 #       - name: Deploy to Amplify
