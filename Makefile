@@ -34,8 +34,9 @@ run-frontend: ## Run frontend web server in developement mode
 deploy-frontend: ## [Requires latest changes to be committed to REMOTE] Manually kick off Amplify Job to build, test, and deploy frontend
 	./scripts/deploy_frontend.sh "$(REGION)" "$(AMPLIFY_APP_ID)" "$(BRANCH_NAME)"
 
-deploy-frontend-infra: ## Deploy backend infrastructure
+deploy-infra-frontend: ## Deploy backend infrastructure
 	cd infra/frontend; \
+	terraform plan; \
 	terraform apply -auto-approve -input=false; \
 	cd ../..
 
@@ -67,7 +68,8 @@ build-backend: ## Builds a Docker image of backend webserver
 deploy-backend: build-backend ## Manually push LOCALLY built docker image to ECR, update task definition and deploy backend webserver to ECS
 	./scripts/deploy_backend.sh "$(REGION)" "$(ECR_REGISTRY)" "$(ECR_REPOSITORY)" "$(TASK_DEFINITION_NAME)" "$(CLUSTER_NAME)" "$(SERVICE_NAME)"
 
-deploy-backend-infra: ## Deploy backend infrastructure
+deploy-infra-backend: ## Deploy backend infrastructure
 	cd infra/backend; \
+	terraform plan; \
 	terraform apply -auto-approve -input=false; \
 	cd ../..
