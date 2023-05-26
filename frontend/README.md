@@ -2,6 +2,12 @@
 
 The frontend was created using the `create-react-app` CLI.
 
+# Architecture
+
+TODO: Insert architecture diagram.
+
+# Usage
+
 ## Available Commands
 
 ### `npm run start`
