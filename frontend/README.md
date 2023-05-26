@@ -2,11 +2,9 @@
 
 The frontend was created using the `create-react-app` CLI.
 
-# Architecture
+## Architecture
 
 TODO: Insert architecture diagram.
-
-# Usage
 
 ## Available Commands
 
