@@ -3,7 +3,10 @@ run-name: ${{ github.sha }}
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
+    paths:
+      - backend/**
 
 env:
   AWS_REGION: us-west-2
