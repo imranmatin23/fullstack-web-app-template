@@ -10,8 +10,7 @@ on:
 
 env:
   AWS_REGION: us-west-2
-  REACT_APP_BACKEND_URL: https://api.template.imranmatin.com
-  APP_ID: d122ihsxyi4grc
+  AMPLIFY_APP_ID: d122ihsxyi4grc
   BRANCH_NAME: main
 
 permissions:
