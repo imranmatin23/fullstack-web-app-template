@@ -2,6 +2,7 @@ name: Deploy to Amazon Amplify
 run-name: ${{ github.sha }}
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main

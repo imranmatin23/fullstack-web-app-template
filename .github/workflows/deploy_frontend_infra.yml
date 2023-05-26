@@ -1,4 +1,4 @@
-name: Deploy to frontend Infra using Terraform
+name: Deploy Frontend Infrastructure using Terraform
 run-name: ${{ github.sha }}
 
 on:
@@ -35,6 +35,14 @@ jobs:
       # Clone the Repository
       - name: Checkout
         uses: actions/checkout@v3
+
+      # Generate temporary AWS credentials by assuming a role (https://aws.amazon.com/blogs/security/use-iam-roles-to-connect-github-actions-to-actions-in-aws/)
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::775627766428:role/ecr-image-push-role
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          aws-region: ${{ vars.FRONTEND_INFRA_REGION }}
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
