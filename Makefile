@@ -30,7 +30,7 @@ build-backend: ## Builds a Docker image of backend webserver
 
 run-backend: build-backend ## Runs a Docker image of backend webserver
 	cd backend; \
-	docker run -d --name fullstack-web-app-template-backend -p 80:80 fullstack-web-app-template-backend; \
+	docker run --env-file .env -d --name fullstack-web-app-template-backend -p 80:80 fullstack-web-app-template-backend; \
 	cd ../
 
 stop-backend: ## Stops a Docker image of backend webserver
