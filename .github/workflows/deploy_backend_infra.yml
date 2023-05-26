@@ -12,7 +12,7 @@ on:
 env:
   TF_VAR_region: ${{ vars.BACKEND_INFRA_REGION }}
   TF_VAR_project_name: ${{ vars.BACKEND_INFRA_PROJECT_NAME }}
-  TF_VAR_availability_zones: ${{ vars.BACKEND_INFRA_AVAILABILITY_ZONES }}
+  TF_VAR_availability_zones: ${{ fromJSON(vars.BACKEND_INFRA_AVAILABILITY_ZONES) }}
   TF_VAR_route53_hosted_zone_id: ${{ vars.BACKEND_INFRA_ROUTE53_HOSTED_ZONE_ID }}
   TF_VAR_domain_name: ${{ vars.BACKEND_INFRA_DOMAIN_NAME }}
   TF_VAR_secret_key: $${{ secrets.BACKEND_INFRA_SECRET_KEY }}
