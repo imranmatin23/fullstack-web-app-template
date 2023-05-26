@@ -38,12 +38,13 @@ jobs:
 
       # Deploy to Amplify
       - name: Deploy to Amplify
-        run: |
-          JOB_ID=$(aws amplify start-job --app-id ${{ env.APP_ID }} --branch-name ${{ env.BRANCH_NAME }} --job-type RELEASE | jq -r '.jobSummary.jobId')
-          echo "Release started"
-          echo "Job ID is $JOB_ID"
+      run: |
+        LAST_COMMIT_TIME=$(git show -s --format=%cI ${{ github.sha }})
+        JOB_ID=$(aws amplify start-job --app-id ${{ env.APP_ID }} --branch-name ${{ env.BRANCH_NAME }} --job-type RELEASE --commit-id ${{ github.sha }} --commit-message ${{ github.event.head_commit.message }} --commit-time $LAST_COMMIT_TIME | jq -r '.jobSummary.jobId')
+        echo "Release started"
+        echo "Job ID is $JOB_ID"
 
-          while [[ "$(aws amplify get-job --app-id ${{ env.APP_ID }} --branch-name ${{ env.BRANCH_NAME }} --job-id $JOB_ID | jq -r '.job.summary.status')" =~ ^(PENDING|RUNNING)$ ]]; do sleep 1; done
-          JOB_STATUS="$(aws amplify get-job --app-id ${{ env.APP_ID }} --branch-name ${{ env.BRANCH_NAME }} --job-id $JOB_ID | jq -r '.job.summary.status')"
-          echo "Job finished"
-          echo "Job status is $JOB_STATUS"
+        while [[ "$(aws amplify get-job --app-id ${{ env.APP_ID }} --branch-name ${{ env.BRANCH_NAME }} --job-id $JOB_ID | jq -r '.job.summary.status')" =~ ^(PENDING|RUNNING)$ ]]; do sleep 1; done
+        JOB_STATUS="$(aws amplify get-job --app-id ${{ env.APP_ID }} --branch-name ${{ env.BRANCH_NAME }} --job-id $JOB_ID | jq -r '.job.summary.status')"
+        echo "Job finished"
+        echo "Job status is $JOB_STATUS"

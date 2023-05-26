@@ -2,6 +2,9 @@
 PY = python3
 VENV = .venv
 BIN=$(VENV)/bin
+LAST_COMMIT_ID=$(shell git log -1 --pretty=format:"%H")
+LAST_COMMIT_MESSAGE=$(shell git log -1 --pretty=format:"%s")
+LAST_COMMIT_TIME=$(shell git log -1 --pretty=format:"%cI")
 
 .PHONY: help
 
@@ -14,6 +17,15 @@ run-frontend: ## Run frontend web server in developement mode
 	cd frontend; \
 	npm run start; \
 	cd ../
+
+deploy-frontend: ## Manually kick off Amplify Job to build, test, deploy frontend
+	aws amplify start-job \
+	--app-id d122ihsxyi4grc \
+	--branch-name main \
+	--job-type RELEASE \
+	--commit-id $(LAST_COMMIT_ID) \
+	--commit-message "$(LAST_COMMIT_MESSAGE)" \
+	--commit-time "$(LAST_COMMIT_TIME)"
 
 ### Backend
 
