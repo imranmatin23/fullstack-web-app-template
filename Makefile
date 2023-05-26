@@ -2,9 +2,22 @@
 PY = python3
 VENV = .venv
 BIN=$(VENV)/bin
-LAST_COMMIT_ID=$(shell git log -1 --pretty=format:"%H")
-LAST_COMMIT_MESSAGE=$(shell git log -1 --pretty=format:"%s")
-LAST_COMMIT_TIME=$(shell git log -1 --pretty=format:"%cI")
+
+# General AWS Variables
+REGION=us-west-2
+
+# Amplify Variables
+AMPLIFY_APP_ID=d122ihsxyi4grc
+BRANCH_NAME=main
+
+# ECR Variables
+ECR_REGISTRY=775627766428.dkr.ecr.us-west-2.amazonaws.com
+ECR_REPOSITORY=fullstack-web-app-template-backend
+
+# ECS Variables
+TASK_DEFINITION_NAME=backend-web
+CLUSTER_NAME=prod
+SERVICE_NAME=prod-backend-web
 
 .PHONY: help
 
@@ -18,14 +31,8 @@ run-frontend: ## Run frontend web server in developement mode
 	npm run start; \
 	cd ../
 
-deploy-frontend: ## Manually kick off Amplify Job to build, test, deploy frontend
-	aws amplify start-job \
-	--app-id d122ihsxyi4grc \
-	--branch-name main \
-	--job-type RELEASE \
-	--commit-id $(LAST_COMMIT_ID) \
-	--commit-message "$(LAST_COMMIT_MESSAGE)" \
-	--commit-time "$(LAST_COMMIT_TIME)"
+deploy-frontend: ## [Requires latest changes to be committed to REMOTE] Manually kick off Amplify Job to build, test, and deploy frontend
+	./scripts/deploy_frontend.sh "$(REGION)" "$(AMPLIFY_APP_ID)" "$(BRANCH_NAME)"
 
 ### Backend
 
@@ -35,23 +42,22 @@ $(VENV): backend/requirements.txt ## Create .venv Python3 virtual environment
 	$(BIN)/pip install --upgrade pip
 	touch $(VENV)
 
-build-backend: ## Builds a Docker image of backend webserver
-	cd backend; \
-	docker build -t fullstack-web-app-template-backend .; \
-	cd ../
-
 run-backend: build-backend ## Runs a Docker image of backend webserver
 	cd backend; \
-	docker run --env-file .env -d --name fullstack-web-app-template-backend -p 80:80 fullstack-web-app-template-backend; \
+	docker run --env-file .env -d --name $(ECR_REPOSITORY) -p 80:80 $(ECR_REPOSITORY); \
 	cd ../
 
 stop-backend: ## Stops a Docker image of backend webserver
-	docker stop fullstack-web-app-template-backend
-	docker rm fullstack-web-app-template-backend
+	docker stop $(ECR_REPOSITORY)
+	docker rm $(ECR_REPOSITORY)
 
 logs-backend: ## Prints the last 100 lines of the running Docker container
-	docker logs fullstack-web-app-template-backend -n 100
+	docker logs $(ECR_REPOSITORY) -n 100
 
-push-backend: build-backend ## Pushes a built Docker image of backend webserver to ECR
-	docker tag fullstack-web-app-template-backend:latest 775627766428.dkr.ecr.us-west-2.amazonaws.com/fullstack-web-app-template-backend:latest; \
-	docker push 775627766428.dkr.ecr.us-west-2.amazonaws.com/fullstack-web-app-template-backend:latest
+build-backend: ## Builds a Docker image of backend webserver
+	cd backend; \
+	docker build -t $(ECR_REPOSITORY) .; \
+	cd ../
+
+deploy-backend: build-backend ## Manually push LOCALLY built docker image to ECR, update task definition and deploy backend webserver to ECS
+	./scripts/deploy_backend.sh "$(REGION)" "$(ECR_REGISTRY)" "$(ECR_REPOSITORY)" "$(TASK_DEFINITION_NAME)" "$(CLUSTER_NAME)" "$(SERVICE_NAME)"
