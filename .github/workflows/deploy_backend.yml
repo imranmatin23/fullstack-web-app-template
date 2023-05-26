@@ -22,9 +22,42 @@ permissions:
   contents: read # This is required for actions/checkout
 
 jobs:
-  deploy:
-    name: Deploy
+  # Temporarily run tests before build until tests after build are ready
+  test:
+    name: Test
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
+
+    steps:
+      # Clone the Repository
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Setup Python
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      # Describe the Task Definition
+      - name: Execute Django tests
+        run: |
+          python manage.py test
+
+  build:
+    name: Build
+    needs: test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
 
     steps:
       # Clone the Repository
@@ -58,6 +91,24 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
           echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      # Clone the Repository
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Generate temporary AWS credentials by assuming a role (https://aws.amazon.com/blogs/security/use-iam-roles-to-connect-github-actions-to-actions-in-aws/)
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::775627766428:role/ecr-image-push-role
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          aws-region: ${{ env.AWS_REGION }}
+
       # Describe the Task Definition
       - name: Download ECS Task Definition
         run: |
@@ -70,7 +121,7 @@ jobs:
         with:
           task-definition: task-definition.json
           container-name: ${{ env.CONTAINER_NAME }}
-          image: ${{ steps.build-image.outputs.image }}
+          image: ${{ needs.build.outputs.image }}
 
       # Deploy the image to the ECS Service
       - name: Deploy new ECS Task Definition to ECS Service
