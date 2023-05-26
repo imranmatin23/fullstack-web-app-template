@@ -1,9 +1,9 @@
 module "amplify_app" {
   source  = "cloudposse/amplify-app/aws"
-  access_token = var.github_personal_access_token
+  access_token = var.gh_personal_access_token
   name       = "${var.project_name}-frontend"
   description  = "${var.project_name}-frontend"
-  repository = var.github_repository
+  repository = var.gh_repository
   platform     = "WEB"
 
   enable_auto_branch_creation = false

@@ -6,11 +6,11 @@ variable "project_name" {
   description = "Project name to use in resource names"
 }
 
-variable "github_personal_access_token" {
+variable "gh_personal_access_token" {
   description = "Github Personal Access Token"
 }
 
-variable "github_repository" {
+variable "gh_repository" {
   description = "Github Repository"
 }
 

@@ -1,0 +1,52 @@
+name: Deploy to frontend Infra using Terraform
+run-name: ${{ github.sha }}
+
+on:
+  workflow_dispatch:
+  # Disable auto deploy on push to main and changes in infra/frontend/**
+  # push:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - infra/frontend/**
+
+env:
+  TF_VAR_region: ${{ vars.FRONTEND_INFRA_REGION }}
+  TF_VAR_project_name: ${{ vars.FRONTEND_INFRA_PROJECT_NAME }}
+  TF_VAR_gh_personal_access_token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+  TF_VAR_gh_repository: ${{ vars.FRONTEND_INFRA_GH_REPOSITORY }}
+  TF_VAR_domain_name: ${{ vars.FRONTEND_INFRA_DOMAIN_NAME }}
+  TF_VAR_sub_domain_prefix: ${{ vars.FRONTEND_INFRA_SUB_DOMAIN_PREFIX }}
+  TF_VAR_backend_url: ${{ vars.FRONTEND_INFRA_BACKEND_URL }}
+
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read # This is required for actions/checkout
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./infra/frontend
+
+    steps:
+      # Clone the Repository
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+
+      - name: Terraform Init
+        run: |
+          terraform init
+
+      - name: Terraform Plan
+        run: |
+          terraform plan -no-color -input=false
+
+      - name: Terraform Apply
+        run: |
+          terraform apply -auto-approve -input=false
