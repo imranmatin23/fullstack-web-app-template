@@ -7,12 +7,12 @@ module "amplify_app" {
   platform     = "WEB"
 
   enable_auto_branch_creation = false
-  enable_branch_auto_build    = true
+  enable_branch_auto_build    = false
   enable_branch_auto_deletion = false
   enable_basic_auth           = false
 
   auto_branch_creation_config = {
-    enable_auto_build = true
+    enable_auto_build = false
   }
 
   build_spec = <<-EOT
@@ -46,7 +46,7 @@ module "amplify_app" {
   environments = {
     main = {
       branch_name                 = "main"
-      enable_auto_build           = true
+      enable_auto_build           = false
       backend_enabled             = false
       enable_performance_mode     = false
       enable_pull_request_preview = false

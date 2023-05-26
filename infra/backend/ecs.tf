@@ -21,6 +21,7 @@ resource "aws_ecs_task_definition" "prod_backend_web" {
       log_stream = aws_cloudwatch_log_stream.prod_backend_web.name
       secret_key  = var.secret_key
       debug = var.debug
+      cors_origin_allow_all = var.cors_origin_allow_all
       allowed_hosts = var.allowed_hosts
     },
   )

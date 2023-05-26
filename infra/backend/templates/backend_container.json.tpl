@@ -21,6 +21,10 @@
         "value": "${debug}"
       },
       {
+        "name": "CORS_ORIGIN_ALLOW_ALL",
+        "value": "${cors_origin_allow_all}"
+      },
+      {
         "name": "ALLOWED_HOSTS",
         "value": "${allowed_hosts}"
       }

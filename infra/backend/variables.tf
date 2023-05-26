@@ -34,3 +34,7 @@ variable "debug" {
 variable "allowed_hosts" {
   description = "The allowed hosts for the service"
 }
+
+variable "cors_origin_allow_all" {
+  description = "The coors origin allow all flag for the service"
+}
