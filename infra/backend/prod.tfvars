@@ -1,0 +1,8 @@
+region = "us-west-2"
+project_name = "fullstack-web-app-template"
+availability_zones = "us-west-2a,us-west-2b"
+route53_hosted_zone_id = "Z09135969OKSF2W7HIYN"
+domain_name = "api.template.imranmatin.com"
+debug = "False"
+allowed_hosts = "*"
+cors_origin_allow_all = "True"

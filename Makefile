@@ -70,6 +70,6 @@ deploy-backend: build-backend ## Manually push LOCALLY built docker image to ECR
 
 deploy-infra-backend: ## Deploy backend infrastructure
 	cd infra/backend; \
-	terraform plan; \
-	terraform apply -auto-approve -input=false; \
+	terraform plan -var-file prod.tfvars; \
+	terraform apply -auto-approve -input=false -var-file prod.tfvars; \
 	cd ../..
