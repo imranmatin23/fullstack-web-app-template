@@ -73,7 +73,7 @@ jobs:
 
   deploy:
     name: Deploy
-    needs: build
+    needs: test
     runs-on: ubuntu-latest
 
     steps:
