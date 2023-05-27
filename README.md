@@ -2,6 +2,16 @@
 
 This repository is a template for setting up a full stack web app with React and Django.
 
+## Environments
+
+The following environments are available for this app.
+
+- `local`
+- ~~`dev`~~
+- ~~`alpha`~~
+- ~~`beta`~~
+- `prod`
+
 ## Frontend
 
 The frontend was created using the `create-react-app` CLI. See [frontend/README.md](frontend/README.md) for further details about the fronted.
@@ -26,10 +36,15 @@ At this time there is no support for any stages besides `prod` and `local`.
 
 ## TODO
 
-1. Database: Local/Production integration with PostgreSQL.
-2. Testing: Add testing (unit, integration, canary, etc.) for frontend/backend.
-3. Add Alpha/Beta stages
-   - Create Alpha/Beta infrastructure
-   - Add Alpha/Beta stages using only Github Actions (NOTE: GitHub Actions has a Workflow Visualizer that is the equivalent of a Pipeline Visualizer).
-   - Support Backend/Frontend App code reading from environment variables and AWS Secrets Manager
-   - Support Backend/Backend Infra code initializing environment variables
+0. Bugs
+   - Fix `.github/workflows/deploy_backend.yml` not allowing deploy step to find build step output.
+1. CI/CD
+   - Convert frontend CI/CD to use Github Actions for build, test, deploy
+   - Convert frontend Amplify to manual hosting (i.e. no Git provider connecting and no build, test, deploy in Amplify)
+2. Database: Local/Production integration with PostgreSQL.
+3. Testing: Add testing (unit, integration, canary, etc.) for frontend/backend.
+4. Add dev/alpha/beta stages
+   - Secure dev/alpha/beta/prod stages
+   - Create infrastructure
+   - Add CI/CD stages using only Github Actions (NOTE: GitHub Actions has a Workflow Visualizer that is the equivalent of a Pipeline Visualizer).
+   - Update frontend/backend app code

@@ -1,6 +1,6 @@
 # Frontend
 
-The frontend was created using the `create-react-app` CLI.
+The frontend was created using the `create-react-app` CLI. Set the environment variables (picked up by React at runtime, see https://create-react-app.dev/docs/adding-custom-environment-variables/#adding-development-environment-variables-in-env) for the frontend to run locally in `.env`.
 
 ## Architecture
 

@@ -1,6 +1,6 @@
 # Backend
 
-The backend was created using the `django-admin` CLI.
+The backend was created using the `django-admin` CLI. Set the environment variables (passed into the Docker container at runtime, see `make run-backend`) for the backend to run locally in `.env`.
 
 ## Available Commands
 
