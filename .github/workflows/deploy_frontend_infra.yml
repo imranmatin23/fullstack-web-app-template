@@ -1,4 +1,4 @@
-name: Frontend Infrastructure Deploy
+name: Deploy Frontend Infrastructure
 run-name: ${{ github.sha }}
 
 on:
