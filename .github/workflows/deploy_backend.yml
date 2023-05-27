@@ -22,38 +22,8 @@ permissions:
   contents: read # This is required for actions/checkout
 
 jobs:
-  # Temporarily run tests before build until tests after build are ready
-  test:
-    name: Test
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./backend
-
-    steps:
-      # Clone the Repository
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      # Setup Python
-      - name: Install Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.10"
-
-      # Install dependencies
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-
-      # Describe the Task Definition
-      - name: Execute Django tests
-        run: |
-          python manage.py test
-
   build:
     name: Build
-    needs: test
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -90,6 +60,16 @@ jobs:
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
           echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+
+  test:
+    name: Test
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      # Clone the Repository
+      - name: Checkout
+        uses: actions/checkout@v3
 
   deploy:
     name: Deploy
