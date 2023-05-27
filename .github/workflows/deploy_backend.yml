@@ -28,8 +28,6 @@ jobs:
     defaults:
       run:
         working-directory: ./backend
-    outputs:
-      image: ${{ steps.build-image.outputs.image }}
 
     steps:
       # Clone the Repository
