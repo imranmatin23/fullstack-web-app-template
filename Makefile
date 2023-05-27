@@ -36,8 +36,8 @@ deploy-frontend: ## [Requires latest changes to be committed to REMOTE] Manually
 
 deploy-infra-frontend: ## Deploy backend infrastructure
 	cd infra/frontend; \
-	terraform plan; \
-	terraform apply -auto-approve -input=false; \
+	terraform plan -var-file prod.tfvars; \
+	terraform apply -auto-approve -input=false -var-file prod.tfvars; \
 	cd ../..
 
 ### Backend

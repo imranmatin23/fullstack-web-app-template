@@ -10,13 +10,8 @@ on:
   #     - infra/frontend/**
 
 env:
-  TF_VAR_region: ${{ vars.FRONTEND_INFRA_REGION }}
-  TF_VAR_project_name: ${{ vars.FRONTEND_INFRA_PROJECT_NAME }}
+  AWS_REGION: us-west-2
   TF_VAR_gh_personal_access_token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
-  TF_VAR_gh_repository: ${{ vars.FRONTEND_INFRA_GH_REPOSITORY }}
-  TF_VAR_domain_name: ${{ vars.FRONTEND_INFRA_DOMAIN_NAME }}
-  TF_VAR_sub_domain_prefix: ${{ vars.FRONTEND_INFRA_SUB_DOMAIN_PREFIX }}
-  TF_VAR_backend_url: ${{ vars.FRONTEND_INFRA_BACKEND_URL }}
 
 permissions:
   id-token: write # This is required for requesting the JWT
@@ -41,7 +36,7 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::775627766428:role/ecr-image-push-role
           role-session-name: GitHub_to_AWS_via_FederatedOIDC
-          aws-region: ${{ vars.FRONTEND_INFRA_REGION }}
+          aws-region: ${{ env.AWS_REGION }}
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
@@ -52,8 +47,8 @@ jobs:
 
       - name: Terraform Plan
         run: |
-          terraform plan -no-color -input=false
+          terraform plan -no-color -input=false -var-file prod.tfvars
 
       - name: Terraform Apply
         run: |
-          terraform apply -auto-approve -input=false
+          terraform apply -auto-approve -input=false -var-file prod.tfvars
