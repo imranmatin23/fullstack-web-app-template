@@ -72,6 +72,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      # DEBUG
+      - name: Show build image
+        run: |
+          echo "Build Image: ${{ needs.build.outputs.image }}"
+
   deploy:
     name: Deploy
     needs: [build, test]
