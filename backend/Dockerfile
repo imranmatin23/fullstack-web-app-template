@@ -13,6 +13,7 @@ COPY . .
 # Install dependencies
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
+RUN apt-get update && apt-get install netcat -y
 
 # Expose the port on the container for Django App
 EXPOSE 80

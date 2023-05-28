@@ -38,3 +38,27 @@ variable "allowed_hosts" {
 variable "cors_origin_allow_all" {
   description = "The coors origin allow all flag for the service"
 }
+
+variable "database_type" {
+  description = "The database type for the backend webserver to use"
+}
+
+variable "sql_engine" {
+  description = "The engine of the database"
+}
+
+variable "sql_database" {
+  description = "The name of the database to connect to"
+}
+
+variable "sql_user" {
+  description = "The name of the user to use to connect to the database"
+}
+
+variable "sql_password" {
+  description = "The password of the user to use to connect to the database"
+}
+
+variable "sql_port" {
+  description = "The port to use to connect to the database"
+}

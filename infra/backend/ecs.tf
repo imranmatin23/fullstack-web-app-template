@@ -23,6 +23,13 @@ resource "aws_ecs_task_definition" "prod_backend_web" {
       debug = var.debug
       cors_origin_allow_all = var.cors_origin_allow_all
       allowed_hosts = var.allowed_hosts
+      database_type = var.database_type
+      sql_engine = var.sql_engine
+      sql_database = var.sql_database
+      sql_user = var.sql_user
+      sql_password = var.sql_password
+      sql_host = aws_rds_cluster.prod.endpoint
+      sql_port = var.sql_port
     },
   )
   execution_role_arn = aws_iam_role.ecs_task_execution.arn

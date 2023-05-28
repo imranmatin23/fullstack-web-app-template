@@ -48,17 +48,20 @@ $(VENV): backend/requirements.txt ## Create .venv Python3 virtual environment
 	$(BIN)/pip install --upgrade pip
 	touch $(VENV)
 
-run-backend: build-backend ## Runs a Docker image of backend webserver
+run-backend: ## Runs the backend web server and postgres database with Docker Compose
 	cd backend; \
-	docker run --env-file .env -d --name $(ECR_REPOSITORY) -p 80:80 $(ECR_REPOSITORY); \
+	docker-compose up -d --build; \
 	cd ../
 
-stop-backend: ## Stops a Docker image of backend webserver
-	docker stop $(ECR_REPOSITORY)
-	docker rm $(ECR_REPOSITORY)
+stop-backend: ## Stops the backend web server and postgres database with Docker Compose (NOTE: Adding -v will delete the database)
+	cd backend; \
+	docker-compose down; \
+	cd ../
 
 logs-backend: ## Prints the last 100 lines of the running Docker container
-	docker logs $(ECR_REPOSITORY) -n 100
+	cd backend; \
+	docker-compose logs web --tail 100;\
+	cd ../
 
 build-backend: ## Builds a Docker image of backend webserver
 	cd backend; \

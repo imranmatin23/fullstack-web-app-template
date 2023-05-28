@@ -27,6 +27,34 @@
       {
         "name": "ALLOWED_HOSTS",
         "value": "${allowed_hosts}"
+      },
+      {
+        "name": "DATABASE_TYPE",
+        "value": "${database_type}"
+      },
+      {
+        "name": "SQL_ENGINE",
+        "value": "${sql_engine}"
+      },
+      {
+        "name": "SQL_DATABASE",
+        "value": "${sql_database}"
+      },
+      {
+        "name": "SQL_USER",
+        "value": "${sql_user}"
+      },
+      {
+        "name": "SQL_PASSWORD",
+        "value": "${sql_password}"
+      },
+      {
+        "name": "SQL_HOST",
+        "value": "${sql_host}"
+      },
+      {
+        "name": "SQL_PORT",
+        "value": "${sql_port}"
       }
     ],
     "logConfiguration": {

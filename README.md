@@ -1,6 +1,8 @@
 # Fullstack Web App Template
 
-This repository is a template for setting up a full stack web app with React and Django.
+[![Deploy Backend Infrastructure](https://github.com/imranmatin23/fullstack-web-app-template/actions/workflows/deploy_backend_infra.yml/badge.svg?branch=main)](https://github.com/imranmatin23/fullstack-web-app-template/actions/workflows/deploy_backend_infra.yml) [![Deploy Backend](https://github.com/imranmatin23/fullstack-web-app-template/actions/workflows/deploy_backend.yml/badge.svg)](https://github.com/imranmatin23/fullstack-web-app-template/actions/workflows/deploy_backend.yml) [![Deploy Frontend Infrastructure](https://github.com/imranmatin23/fullstack-web-app-template/actions/workflows/deploy_frontend_infra.yml/badge.svg)](https://github.com/imranmatin23/fullstack-web-app-template/actions/workflows/deploy_frontend_infra.yml) [![Deploy Frontend](https://github.com/imranmatin23/fullstack-web-app-template/actions/workflows/deploy_frontend.yml/badge.svg)](https://github.com/imranmatin23/fullstack-web-app-template/actions/workflows/deploy_frontend.yml)
+
+This repository is a template for setting up a full stack web app with React (Frontend), Django (Backend), PostgreSQL (Database), Docker (Containers), Terraform (IaaC), AWS (3PC), and Github Actions (CI/CD).
 
 ## Environments
 
@@ -36,9 +38,8 @@ At this time there is no support for any stages besides `prod` and `local`.
 
 ## TODO
 
-1. Database: Local/Production integration with PostgreSQL.
-2. Testing: Add testing (unit, integration, canary, etc.) for frontend/backend.
-3. Enhancements
+1. Testing: Add testing (unit, integration, canary, etc.) for frontend/backend.
+2. Enhancements
    - Read backend secrets from AWS Secrets Manager rather than from environment variables.
    - Convert frontend CI/CD to use Github Actions for build, test, deploy and convert frontend Amplify to manual hosting (i.e. no Git provider connecting and no build, test, deploy in Amplify)
    - Have true CI/CD to invoke Pipeline upon push to `main`.
