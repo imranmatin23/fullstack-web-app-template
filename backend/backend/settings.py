@@ -101,7 +101,6 @@ WSGI_APPLICATION = "backend.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 database_type = env("DATABASE")
-print(f"The database type is {database_type}...")
 if database_type == "postgres":
     DATABASES = {
         "default": {

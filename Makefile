@@ -53,7 +53,7 @@ run-backend: ## Runs the backend web server and postgres database with Docker Co
 	docker-compose up -d --build; \
 	cd ../
 
-stop-backend: ## Stops the backend web server and postgres database with Docker Compose
+stop-backend: ## Stops the backend web server and postgres database with Docker Compose (NOTE: Adding -v will delete the database)
 	cd backend; \
 	docker-compose down; \
 	cd ../
