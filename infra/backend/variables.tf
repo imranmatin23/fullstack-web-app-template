@@ -38,3 +38,31 @@ variable "allowed_hosts" {
 variable "cors_origin_allow_all" {
   description = "The coors origin allow all flag for the service"
 }
+
+variable "database_type" {
+  description = ""
+}
+
+variable "sql_engine" {
+  description = ""
+}
+
+variable "sql_database" {
+  description = ""
+}
+
+variable "sql_user" {
+  description = ""
+}
+
+variable "sql_password" {
+  description = ""
+}
+
+variable "sql_host" {
+  description = ""
+}
+
+variable "sql_port" {
+  description = ""
+}
