@@ -6,9 +6,21 @@ This README covers how to deploy the frontend and backend to production.
 
 You can either rely on `.github/workflows/deploy_frontend_infra.yml` (CI/CD with GitHub Actions) to deploy the Frontend infrastructure (NOTE: Terraform variable inputs are defined as GitHub variables and secrets for the repository) or you can deploy the infrastructure from your local machine using `make deploy-infra-frontend` (NOTE: Terraform variable inputs are defined in `infra/frontend/terraform.tfvars`).
 
+You must set the following environment variables locally before deploying:
+
+```bash
+export TF_VAR_gh_personal_access_token="TODO"
+```
+
 ## Backend
 
 You can either rely on `.github/workflows/deploy_backend_infra.yml` (CI/CD with GitHub Actions) to deploy the Backend infrastructure (NOTE: Terraform variable inputs are defined as GitHub variables and secrets for the repository) or you can deploy the infrastructure from your local machine using `make deploy-infra-backend` (NOTE: Terraform variable inputs are defined in `infra/backend/terraform.tfvars`).
+
+You must set the following environment variables locally before deploying:
+
+```bash
+export TF_VAR_secret_key="TODO"
+```
 
 # Resources
 

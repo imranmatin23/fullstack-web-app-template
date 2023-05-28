@@ -36,15 +36,14 @@ At this time there is no support for any stages besides `prod` and `local`.
 
 ## TODO
 
-0. Bugs
+1. Database: Local/Production integration with PostgreSQL.
+2. Testing: Add testing (unit, integration, canary, etc.) for frontend/backend.
+3. Enhancements
    - Read backend secrets from AWS Secrets Manager rather than from environment variables.
-1. CI/CD
-   - Convert frontend CI/CD to use Github Actions for build, test, deploy
-   - Convert frontend Amplify to manual hosting (i.e. no Git provider connecting and no build, test, deploy in Amplify)
-2. Database: Local/Production integration with PostgreSQL.
-3. Testing: Add testing (unit, integration, canary, etc.) for frontend/backend.
-4. Add dev/alpha/beta stages
-   - Secure dev/alpha/beta/prod stages
-   - Create infrastructure
-   - Add CI/CD stages using only Github Actions (NOTE: GitHub Actions has a Workflow Visualizer that is the equivalent of a Pipeline Visualizer).
-   - Update frontend/backend app code
+   - Convert frontend CI/CD to use Github Actions for build, test, deploy and convert frontend Amplify to manual hosting (i.e. no Git provider connecting and no build, test, deploy in Amplify)
+   - Have true CI/CD to invoke Pipeline upon push to `main`.
+   - Add dev/alpha/beta stages
+     - Secure dev/alpha/beta/prod stages
+     - Create infrastructure
+     - Add CI/CD stages using only Github Actions (NOTE: GitHub Actions has a Workflow Visualizer that is the equivalent of a Pipeline Visualizer).
+     - Update frontend/backend app code
