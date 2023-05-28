@@ -22,7 +22,7 @@ env = environ.Env(
     DEBUG=(bool),
     CORS_ORIGIN_ALLOW_ALL=(bool),
     ALLOWED_HOSTS=(str),
-    DATABASE=(str, "sqlite3"),
+    DATABASE_TYPE=(str, "sqlite3"),
     SQL_ENGINE=(str, "django.db.backends.sqlite3"),
     SQL_DATABASE=(str, BASE_DIR / "db.sqlite3"),
     SQL_USER=(str, "user"),
@@ -100,7 +100,7 @@ WSGI_APPLICATION = "backend.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-database_type = env("DATABASE")
+database_type = env("DATABASE_TYPE")
 if database_type == "postgres":
     DATABASES = {
         "default": {

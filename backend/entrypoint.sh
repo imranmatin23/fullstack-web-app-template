@@ -5,8 +5,8 @@ echo "Collecting the static assets..."
 python manage.py collectstatic --noinput
 
 # Wait for postgres to become healthy
-echo "The database type is $DATABASE..."
-if [ "$DATABASE" = "postgres" ]
+echo "The database type is $DATABASE_TYPE..."
+if [ "$DATABASE_TYPE" = "postgres" ]
 then
     echo "Waiting for postgres..."
 
