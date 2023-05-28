@@ -40,29 +40,25 @@ variable "cors_origin_allow_all" {
 }
 
 variable "database_type" {
-  description = ""
+  description = "The database type for the backend webserver to use"
 }
 
 variable "sql_engine" {
-  description = ""
+  description = "The engine of the database"
 }
 
 variable "sql_database" {
-  description = ""
+  description = "The name of the database to connect to"
 }
 
 variable "sql_user" {
-  description = ""
+  description = "The name of the user to use to connect to the database"
 }
 
 variable "sql_password" {
-  description = ""
-}
-
-variable "sql_host" {
-  description = ""
+  description = "The password of the user to use to connect to the database"
 }
 
 variable "sql_port" {
-  description = ""
+  description = "The port to use to connect to the database"
 }
