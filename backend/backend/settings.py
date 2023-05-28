@@ -22,6 +22,13 @@ env = environ.Env(
     DEBUG=(bool),
     CORS_ORIGIN_ALLOW_ALL=(bool),
     ALLOWED_HOSTS=(str),
+    DATABASE=(str, "sqlite3"),
+    SQL_ENGINE=(str, "django.db.backends.sqlite3"),
+    SQL_DATABASE=(str, BASE_DIR / "db.sqlite3"),
+    SQL_USER=(str, "user"),
+    SQL_PASSWORD=(str, "password"),
+    SQL_HOST=(str, "localhost"),
+    SQL_PORT=(str, "5432"),
 )
 
 env_path = BASE_DIR / ".env"
@@ -93,12 +100,26 @@ WSGI_APPLICATION = "backend.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+database_type = env("DATABASE")
+print(f"The database type is {database_type}...")
+if database_type == "postgres":
+    DATABASES = {
+        "default": {
+            "ENGINE": env("SQL_ENGINE"),
+            "NAME": env("SQL_DATABASE"),
+            "USER": env("SQL_USER"),
+            "PASSWORD": env("SQL_PASSWORD"),
+            "HOST": env("SQL_HOST"),
+            "PORT": env("SQL_PORT"),
+        }
     }
-}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 
 # Password validation

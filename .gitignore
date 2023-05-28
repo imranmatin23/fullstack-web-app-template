@@ -71,6 +71,9 @@ MANIFEST
 
 ##################
 
+# Ignore the Django-generated static files
+backend/static/
+
 # Ignore .env files
 .env*
 
