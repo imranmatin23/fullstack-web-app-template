@@ -58,3 +58,4 @@ At this time there is no support for any stages besides `prod` and `local`.
   - Add CI/CD stages using only Github Actions (NOTE: GitHub Actions has a Workflow Visualizer that is the equivalent of a Pipeline Visualizer).
   - Update frontend/backend app code
 - Add 404 not found page for frontend
+- Monitor and decrease AWS infrastructure cost (e.g. remove NAT Gateway)
