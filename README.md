@@ -38,9 +38,8 @@ At this time there is no support for any stages besides `prod` and `local`.
 
 ## TODO
 
-1. Database: Local/Production integration with PostgreSQL.
-2. Testing: Add testing (unit, integration, canary, etc.) for frontend/backend.
-3. Enhancements
+1. Testing: Add testing (unit, integration, canary, etc.) for frontend/backend.
+2. Enhancements
    - Read backend secrets from AWS Secrets Manager rather than from environment variables.
    - Convert frontend CI/CD to use Github Actions for build, test, deploy and convert frontend Amplify to manual hosting (i.e. no Git provider connecting and no build, test, deploy in Amplify)
    - Have true CI/CD to invoke Pipeline upon push to `main`.

@@ -20,6 +20,7 @@ You must set the following environment variables locally before deploying:
 
 ```bash
 export TF_VAR_secret_key="TODO"
+export TF_VAR_sql_password="TODO"
 ```
 
 # Resources
