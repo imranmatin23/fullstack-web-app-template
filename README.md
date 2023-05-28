@@ -37,7 +37,6 @@ At this time there is no support for any stages besides `prod` and `local`.
 ## TODO
 
 0. Bugs
-   - CI/CD deploy using committed .tfvars file and only read secrets from GitHub secrets.
    - Read backend secrets from AWS Secrets Manager rather than from environment variables.
 1. CI/CD
    - Convert frontend CI/CD to use Github Actions for build, test, deploy
