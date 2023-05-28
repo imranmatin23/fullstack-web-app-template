@@ -1,6 +1,8 @@
 # Fullstack Web App Template
 
-This repository is a template for setting up a full stack web app with React and Django.
+[![Deploy Backend Infrastructure](https://github.com/imranmatin23/fullstack-web-app-template/actions/workflows/deploy_backend_infra.yml/badge.svg?branch=main)](https://github.com/imranmatin23/fullstack-web-app-template/actions/workflows/deploy_backend_infra.yml) [![Deploy Backend](https://github.com/imranmatin23/fullstack-web-app-template/actions/workflows/deploy_backend.yml/badge.svg)](https://github.com/imranmatin23/fullstack-web-app-template/actions/workflows/deploy_backend.yml) [![Deploy Frontend Infrastructure](https://github.com/imranmatin23/fullstack-web-app-template/actions/workflows/deploy_frontend_infra.yml/badge.svg)](https://github.com/imranmatin23/fullstack-web-app-template/actions/workflows/deploy_frontend_infra.yml) [![Deploy Frontend](https://github.com/imranmatin23/fullstack-web-app-template/actions/workflows/deploy_frontend.yml/badge.svg)](https://github.com/imranmatin23/fullstack-web-app-template/actions/workflows/deploy_frontend.yml)
+
+This repository is a template for setting up a full stack web app with React (Frontend), Django (Backend), PostgreSQL (Database), Docker (Containers), Terraform (IaaC), AWS (3PC), and Github Actions (CI/CD).
 
 ## Environments
 
