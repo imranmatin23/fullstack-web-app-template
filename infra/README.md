@@ -23,7 +23,7 @@ export TF_VAR_secret_key="TODO"
 export TF_VAR_sql_password="TODO"
 ```
 
-To enable internet access from the ECS/Fargate Tasks, uncomment the NAT Gateway code in `network.tf`. To use an external `PostgreSQL` RDS database as the database instead of a `SQLite3` file-based database on the ECS Fargate Tasks, uncomment the RDS code in `rds.tf` and change the `database_type` to `postgresql` in `prod.tfvars`.
+To enable internet access from the ECS/Fargate Tasks, uncomment the NAT Gateway code in `network.tf`. To use an external `PostgreSQL` RDS database as the database instead of a `SQLite3` file-based database on the ECS Fargate Tasks, uncomment the RDS code in `rds.tf`, `ecs.tf`, and `outputs.tf` and change the `database_type` to `postgresql` in `prod.tfvars`.
 
 ## References
 

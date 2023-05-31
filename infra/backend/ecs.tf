@@ -28,7 +28,8 @@ resource "aws_ecs_task_definition" "prod_backend_web" {
       sql_database = var.sql_database
       sql_user = var.sql_user
       sql_password = var.sql_password
-      sql_host = aws_rds_cluster.prod.endpoint
+      # sql_host = aws_rds_cluster.prod.endpoint
+      sql_host = "N/A"
       sql_port = var.sql_port
     },
   )
