@@ -4,6 +4,8 @@
 
 This repository is a template for setting up a full stack web app with React (Frontend), Django (Backend), PostgreSQL (Database), Docker (Containers), Terraform (IaaC), AWS (3PC), and Github Actions (CI/CD).
 
+You can access the frontend at https://template.imranmatin.com and the backend at https://api.template.imranmatin.com.
+
 ![High Level Architecture](images/high-level-architecture.png)
 
 <div style="text-align:center">
