@@ -2,6 +2,16 @@
 
 The infrastructure was created using `docker`, `terraform` and `AWS`.
 
+## Infrastructure Diagram
+
+I have deployed the ECS/Fargate service in the public subnet and commented out the NAT Gateway and RDS resources to save on AWS costs as they are not required to be deployed for this template to function correctly.
+
+![Infrastructure Diagram](../images/infrastructure-diagram.png)
+
+<div style="text-align:center">
+  <a href="https://lucid.app/lucidchart/61862a22-6730-4e64-aada-cd3617d847a3/edit?viewport_loc=-613%2C-1072%2C3552%2C1902%2C0_0&invitationId=inv_61387a4a-f09a-4db2-b2ba-9c67d432c55f">Infrastructure Diagram</a>
+</div>
+
 ## Frontend
 
 To deploy the infrastructure remotely you can rely on `.github/workflows/deploy_frontend_infra.yml` (CI/CD with GitHub Actions). All secrets that are required during deployment are defined as GitHub Repository Secrets.
