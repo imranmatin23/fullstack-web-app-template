@@ -3,6 +3,7 @@
  */
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
+import NotFound from "./pages/NotFound";
 import Footer from "./components/Footer";
 
 /*
@@ -16,6 +17,7 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={<HomePage />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </Router>

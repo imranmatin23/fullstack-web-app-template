@@ -46,4 +46,3 @@ The CI/CD pipeline was created using `GitHub Actions`. See [.github/workflows/RE
   - Create infrastructure
   - Add CI/CD stages using only Github Actions (NOTE: GitHub Actions has a Workflow Visualizer that is the equivalent of a Pipeline Visualizer).
   - Update frontend/backend app code
-- Add 404 not found page for frontend
