@@ -41,7 +41,6 @@ The CI/CD pipeline was created using `GitHub Actions`. See [.github/workflows/RE
 - Add test scaffolding (unit, integration, canary, etc.) for frontend/backend.
 - Read backend secrets from AWS Secrets Manager rather than from environment variables.
 - Convert frontend CI/CD to use Github Actions for build, test, deploy and convert frontend Amplify to manual hosting (i.e. no Git provider connecting and no build, test, deploy in Amplify)
-- Have true CI/CD to invoke Pipeline upon push to `main`.
 - Add dev/alpha/beta stages
   - Secure dev/alpha/beta/prod stages
   - Create infrastructure
