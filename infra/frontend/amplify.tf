@@ -66,4 +66,13 @@ module "amplify_app" {
       },
     ]
   }
+
+  custom_rules = [
+    {
+      condition = null,
+      source = "</^[^.]+$|\\.(?!(css|gif|ico|jpg|js|png|txt|svg|woff|woff2|ttf|map|json|webp)$)([^.]+$)/>",
+      status = "200",
+      target = "/index.html"
+    }
+  ]
 }
