@@ -9,7 +9,7 @@ I have deployed the ECS/Fargate service in the public subnet and commented out t
 ![Infrastructure Diagram](../images/infrastructure-diagram.png)
 
 <div style="text-align:center">
-  <a href="https://lucid.app/lucidchart/61862a22-6730-4e64-aada-cd3617d847a3/edit?viewport_loc=-613%2C-1072%2C3552%2C1902%2C0_0&invitationId=inv_61387a4a-f09a-4db2-b2ba-9c67d432c55f">Infrastructure Diagram</a>
+  <a href="https://lucid.app/lucidchart/35adafd2-37bd-4477-bb42-253264c65b92/edit?invitationId=inv_c0ca998c-fc75-436f-9ef0-fed2b64c29bb">Infrastructure Diagram</a>
 </div>
 
 ## Frontend
