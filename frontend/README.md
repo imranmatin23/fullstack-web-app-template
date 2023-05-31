@@ -1,10 +1,6 @@
 # Frontend
 
-The frontend was created using the `create-react-app` CLI. Set the environment variables (picked up by React at runtime, see https://create-react-app.dev/docs/adding-custom-environment-variables/#adding-development-environment-variables-in-env) for the frontend to run locally in `.env`.
-
-## Architecture
-
-TODO: Insert architecture diagram.
+The frontend was created using the `create-react-app` CLI. To run the frontend locally, set the environment variables in `.env`.
 
 ## Available Commands
 
@@ -26,7 +22,7 @@ npm install react-router-dom
 npm install axios
 ```
 
-# Suggestions
+## Suggestions
 
 - Add new routes in `src/App.js`.
 - Add new pages in `src/pages/`.
@@ -34,8 +30,9 @@ npm install axios
 - Update the web app's metadata (e.g. favicon) in `public/`.
 - To change the backend endpoint to use in the Axios HTTP requests, update the `REACT_APP_BACKEND_URL` in `.env`.
 
-# References
+## References
 
 [1] [Digital Ocean Create React App Tutorial](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-react-project-with-create-react-app) \
 [2] [React Documentation](https://react.dev) \
-[3] [Legacy React Documentation](https://legacy.reactjs.org)
+[3] [Legacy React Documentation](https://legacy.reactjs.org) \
+[4] https://create-react-app.dev/docs/adding-custom-environment-variables/#adding-development-environment-variables-in-env

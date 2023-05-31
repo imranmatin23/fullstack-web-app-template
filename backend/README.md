@@ -1,12 +1,24 @@
 # Backend
 
-The backend was created using the `django-admin` CLI. Set the environment variables (passed into the Docker container at runtime, see `make run-backend`) for the backend to run locally in `.env`.
+The backend was created using the `django-admin` CLI. To run the backend locally, set the environment variables in `.env`.
 
 ## Available Commands
 
+### `make build-backend`
+
+Builds the Docker image for the backend.
+
 ### `make run-backend`
 
-Builds the Docker image for the backend and runs it as a container at http://127.0.0.1:80.
+Builds and runs the backend and database as containers using Docker Compose at http://127.0.0.1:80.
+
+### `make stop-backend`
+
+Stops the running backend and database containers.
+
+### `make logs-backend`
+
+Retrieves the logs for the running backend container.
 
 ### `python manage.py makemigrations`
 
@@ -40,7 +52,7 @@ cd backend
 django-admin startapp root
 ```
 
-# Suggestions
+## Suggestions
 
 - Add new routes for the `api` app in `api/urls.py`.
 - Add new views for the `api` app in `api/views.py`.
@@ -49,7 +61,7 @@ django-admin startapp root
 - To create a new Django App in the `backend` Django Project, execute `django-admin startapp [APP_NAME]`. Make sure to add the new App's endpoints to `backend/urls.py`.
 - To configure the backend's settings (e.g. database) edit `backend/settings.py` and the ENV vars in `.env`.
 
-# References
+## References
 
 [1] [Django Tutorial: Writing your first Django app, Part 1](https://docs.djangoproject.com/en/4.2/intro/tutorial01/#) \
 [2] [Django Tutorial: Writing your first Django app, Part 2](https://docs.djangoproject.com/en/4.2/intro/tutorial02/)

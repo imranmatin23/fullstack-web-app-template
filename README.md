@@ -4,6 +4,12 @@
 
 This repository is a template for setting up a full stack web app with React (Frontend), Django (Backend), PostgreSQL (Database), Docker (Containers), Terraform (IaaC), AWS (3PC), and Github Actions (CI/CD).
 
+![High Level Architecture](images/high-level-architecture.png)
+
+<div style="text-align:center">
+  <a href="https://lucid.app/lucidchart/61862a22-6730-4e64-aada-cd3617d847a3/edit?viewport_loc=-613%2C-1072%2C3552%2C1902%2C0_0&invitationId=inv_61387a4a-f09a-4db2-b2ba-9c67d432c55f">High Level Architecture Diagram</a>
+</div>
+
 ## Environments
 
 The following environments are available for this app.
@@ -20,35 +26,19 @@ The frontend was created using the `create-react-app` CLI. See [frontend/README.
 
 ## Backend
 
-The backend was created using the `django-admin` CLI. See [backend/README.md](backend/README.md) for further details about the backend.
+The backend was created using the `django-admin` CLI and the database was created using `PostgreSQL`. See [backend/README.md](backend/README.md) for further details about the backend.
 
 ## Infrastructure
 
-The infrastructure was created using `terraform` and `AWS`. See [infra/README.md](infra/README.md) for further details about the infrastructure.
+The infrastructure was created using `docker`, `terraform` and `AWS`. See [infra/README.md](infra/README.md) for further details about the infrastructure.
 
-At this time there is no support for any stages besides `prod` and `local`.
+## CI (Build/Test) / CD (Deploy) Pipeline
 
-## CI (Build/Test) / CD (Deploy)
+The CI/CD pipeline was created using `GitHub Actions`. See [.github/README.md](.github/README.md) for further details about the CI/CD pipeline.
 
-The frontend CI/CD is defined in `.github/workflows/deploy_frontend.yml`. Using the latest commit, 1/ GitHub Actions will kick off an Amplify Job and 2/ Amplify will then execute the build, test, and deploy phases according to the `build_spec` defined in `infra/frontend/amplify.ts`. A deployment to `prod` can also be started using the `make deploy-frontend` command (although this will use the latest commit in `origin/main` by default).
+## Enhancements
 
-The backend CI/CD is defined in the `.github/workflows/deploy_backend.yml`. Using the latest commit, 1/ Github Actions will build, tag, and push a new image to ECR, 2/ GitHub Actions will create a new version of the ECS Task Definition with the new image, and 3/ GitHub actions will deploy the image to ECS. A deployment to `prod` can also be started using the `make deploy-backend` command and it will use the local Docker image that was built most recently.
-
-At this time there is no support for any stages besides `prod` and `local`.
-
-## TODO
-
-1. Testing:
-
-- Add testing (unit, integration, canary, etc.) for frontend/backend.
-
-2. Documentation
-
-- Add High Level Architecutre Diagrams
-- Local Developement Setup
-
-3. Enhancements
-
+- Add test scaffolding (unit, integration, canary, etc.) for frontend/backend.
 - Read backend secrets from AWS Secrets Manager rather than from environment variables.
 - Convert frontend CI/CD to use Github Actions for build, test, deploy and convert frontend Amplify to manual hosting (i.e. no Git provider connecting and no build, test, deploy in Amplify)
 - Have true CI/CD to invoke Pipeline upon push to `main`.

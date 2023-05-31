@@ -1,12 +1,12 @@
 # Fullstack Web App Template
 
-This README covers how to deploy the frontend and backend to production.
+The infrastructure was created using `docker`, `terraform` and `AWS`.
 
 ## Frontend
 
-You can either rely on `.github/workflows/deploy_frontend_infra.yml` (CI/CD with GitHub Actions) to deploy the Frontend infrastructure (NOTE: Terraform variable inputs are defined as GitHub variables and secrets for the repository) or you can deploy the infrastructure from your local machine using `make deploy-infra-frontend` (NOTE: Terraform variable inputs are defined in `infra/frontend/terraform.tfvars`).
+To deploy the infrastructure remotely you can rely on `.github/workflows/deploy_frontend_infra.yml` (CI/CD with GitHub Actions). All secrets that are required during deployment are defined as GitHub Repository Secrets.
 
-You must set the following environment variables locally before deploying:
+To deploy the infrastructure from your local machine, execute `make deploy-infra-frontend` (NOTE: Terraform variable inputs are defined in `infra/frontend/prod.tfvars`). You must set the following environment variables locally before deploying:
 
 ```bash
 export TF_VAR_gh_personal_access_token="TODO"
@@ -14,16 +14,16 @@ export TF_VAR_gh_personal_access_token="TODO"
 
 ## Backend
 
-You can either rely on `.github/workflows/deploy_backend_infra.yml` (CI/CD with GitHub Actions) to deploy the Backend infrastructure (NOTE: Terraform variable inputs are defined as GitHub variables and secrets for the repository) or you can deploy the infrastructure from your local machine using `make deploy-infra-backend` (NOTE: Terraform variable inputs are defined in `infra/backend/terraform.tfvars`).
+To deploy the infrastructure remotely you can rely on `.github/workflows/deploy_backend_infra.yml` (CI/CD with GitHub Actions). All secrets that are required during deployment are defined as GitHub Repository Secrets.
 
-You must set the following environment variables locally before deploying:
+To deploy the infrastructure from your local machine, execute `make deploy-infra-backend` (NOTE: Terraform variable inputs are defined in `infra/backend/prod.tfvars`). You must set the following environment variables locally before deploying:
 
 ```bash
 export TF_VAR_secret_key="TODO"
 export TF_VAR_sql_password="TODO"
 ```
 
-# Resources
+## References
 
 [1] https://dev.to/daiquiri_team/deploying-django-application-on-aws-with-terraform-minimal-working-setup-587g \
 [2] https://medium.com/@Markus.Hanslik/setting-up-an-ssl-certificate-using-aws-and-terraform-198c6fb90743 \
