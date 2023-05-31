@@ -34,7 +34,7 @@ The infrastructure was created using `docker`, `terraform` and `AWS`. See [infra
 
 ## CI (Build/Test) / CD (Deploy) Pipeline
 
-The CI/CD pipeline was created using `GitHub Actions`. See [.github/README.md](.github/README.md) for further details about the CI/CD pipeline.
+The CI/CD pipeline was created using `GitHub Actions`. See [.github/workflows/README.md](.github/workflows/README.md) for further details about the CI/CD pipeline.
 
 ## Enhancements
 
