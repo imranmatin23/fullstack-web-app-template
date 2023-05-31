@@ -56,8 +56,8 @@ resource "aws_ecs_service" "prod_backend_web" {
 
   network_configuration {
     security_groups  = [aws_security_group.prod_ecs_backend.id]
-    subnets          = [aws_subnet.prod_private_1.id, aws_subnet.prod_private_2.id]
-    assign_public_ip = false
+    subnets          = [aws_subnet.prod_public_1.id, aws_subnet.prod_public_2.id]
+    assign_public_ip = true
   }
 }
 
