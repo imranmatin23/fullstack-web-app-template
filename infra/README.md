@@ -1,4 +1,4 @@
-# Fullstack Web App Template
+# Infrastructure
 
 The infrastructure was created using `docker`, `terraform` and `AWS`.
 
