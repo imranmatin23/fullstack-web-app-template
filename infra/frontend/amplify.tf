@@ -63,7 +63,7 @@ module "amplify_app" {
       {
         branch_name = "main"
         prefix      = var.sub_domain_prefix
-      },
+      }
     ]
   }
 
