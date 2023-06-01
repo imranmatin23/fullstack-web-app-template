@@ -48,3 +48,8 @@ jobs:
           JOB_STATUS="$(aws amplify get-job --app-id ${{ env.AMPLIFY_APP_ID }} --branch-name ${{ env.BRANCH_NAME }} --job-id $JOB_ID | jq -r '.job.summary.status')"
           echo "Job finished"
           echo "Job status is $JOB_STATUS"
+
+          if [ "$JOB_STATUS" = "FAILED" ]
+          then
+            exit 1
+          fi
