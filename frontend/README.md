@@ -43,4 +43,5 @@ npm install axios
 [1] [Digital Ocean Create React App Tutorial](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-react-project-with-create-react-app) \
 [2] [React Documentation](https://react.dev) \
 [3] [Legacy React Documentation](https://legacy.reactjs.org) \
-[4] https://create-react-app.dev/docs/adding-custom-environment-variables/#adding-development-environment-variables-in-env
+[4] https://create-react-app.dev/docs/adding-custom-environment-variables/#adding-development-environment-variables-in-env \
+[5] [Dockerizing a React App](https://mherman.org/blog/dockerizing-a-react-app/)
