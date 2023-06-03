@@ -4,9 +4,17 @@ The frontend was created using the `create-react-app` CLI. To run the frontend l
 
 ## Available Commands
 
-### `npm run start`
+### `make run-frontend`
 
-Starts the development server at http://127.0.0.1:3000.
+Builds and runs the frontend's development server as a container using Docker Compose at http://127.0.0.1:3000.
+
+### `make stop-frontend`
+
+Stops the running frontend container.
+
+### `make logs-frontend`
+
+Retrieves the logs for the running frontend container.
 
 ## Reference Commands
 
