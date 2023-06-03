@@ -15,7 +15,7 @@ env:
   TASK_DEFINITION: fullstack-web-app-template-prod-task-definition
   CONTAINER_NAME: fullstack-web-app-template-prod
   ECS_CLUSTER: fullstack-web-app-template-prod-ecs-cluster
-  ECS_SERVICE: fullstack-web-app-template-prod-ecs-cluster
+  ECS_SERVICE: fullstack-web-app-template-prod-ecs-service
 
 permissions:
   id-token: write # This is required for requesting the JWT
