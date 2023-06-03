@@ -17,7 +17,7 @@ ECR_REPOSITORY=fullstack-web-app-template-prod-backend
 # ECS Variables
 TASK_DEFINITION_NAME=fullstack-web-app-template-prod-task-definition
 CLUSTER_NAME=fullstack-web-app-template-prod-ecs-cluster
-SERVICE_NAME=fullstack-web-app-template-prod-ecs-cluster
+SERVICE_NAME=fullstack-web-app-template-prod-ecs-service
 
 .PHONY: help
 
@@ -86,3 +86,6 @@ deploy-infra-backend: ## Deploy backend infrastructure
 	terraform plan -var-file prod.tfvars; \
 	terraform apply -auto-approve -input=false -var-file prod.tfvars; \
 	cd ../..
+
+open-backend-web-shell: ## Opens a shell on an ECS Task running the backend webserver
+	./scripts/open_backend_web_shell.sh "$(REGION)" "$(CLUSTER_NAME)" "$(SERVICE_NAME)"
