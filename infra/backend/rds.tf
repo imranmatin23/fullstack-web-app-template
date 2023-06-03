@@ -1,10 +1,10 @@
-# resource "aws_db_subnet_group" "prod" {
-#   name       = "prod"
-#   subnet_ids = [aws_subnet.prod_private_1.id, aws_subnet.prod_private_2.id]
+# resource "aws_db_subnet_group" "db_subnet_group" {
+#   name       = "${var.project_name}-${var.stage}-db-subnet-group"
+#   subnet_ids = [aws_subnet.private_subnet_1.id, aws_subnet.private_subnet_2.id]
 # }
 
-# resource "aws_rds_cluster" "prod" {
-#   cluster_identifier = "prod"
+# resource "aws_rds_cluster" "rds_cluster" {
+#   cluster_identifier = "${var.project_name}-${var.stage}-rds-cluster"
 #   engine             = "aurora-postgresql"
 #   engine_mode        = "provisioned"
 #   engine_version     = "15.2"
@@ -12,8 +12,8 @@
 #   master_username    = var.sql_user
 #   master_password    = var.sql_password
 #   port                    = var.sql_port
-#   vpc_security_group_ids  = [aws_security_group.rds_prod.id]
-#   db_subnet_group_name    = aws_db_subnet_group.prod.name
+#   vpc_security_group_ids  = [aws_security_group.rds_cluster_security_group.id]
+#   db_subnet_group_name    = aws_db_subnet_group.db_subnet_group.name
 #   storage_encrypted       = false
 #   skip_final_snapshot     = true
 #   serverlessv2_scaling_configuration {
@@ -22,25 +22,25 @@
 #   }
 # }
 
-# resource "aws_rds_cluster_instance" "prod" {
-#   identifier = "prod"
-#   cluster_identifier = aws_rds_cluster.prod.id
+# resource "aws_rds_cluster_instance" "rds_cluster_instance" {
+#   identifier = "${var.project_name}-${var.stage}-rds-cluster-instance"
+#   cluster_identifier = aws_rds_cluster.rds_cluster.id
 #   instance_class     = "db.serverless"
-#   engine             = aws_rds_cluster.prod.engine
-#   engine_version     = aws_rds_cluster.prod.engine_version
-#   db_subnet_group_name    = aws_db_subnet_group.prod.name
+#   engine             = aws_rds_cluster.rds_cluster.engine
+#   engine_version     = aws_rds_cluster.rds_cluster.engine_version
+#   db_subnet_group_name    = aws_db_subnet_group.db_subnet_group.name
 #   publicly_accessible = false
 # }
 
-# resource "aws_security_group" "rds_prod" {
-#   name        = "rds-prod"
-#   vpc_id      = aws_vpc.prod.id
+# resource "aws_security_group" "rds_cluster_security_group" {
+#   name        = "${var.project_name}-${var.stage}-rds-cluster-security-group"
+#   vpc_id      = aws_vpc.vpc.id
 
 #   ingress {
 #     protocol        = "tcp"
 #     from_port       = var.sql_port
 #     to_port         = var.sql_port
-#     security_groups = [aws_security_group.prod_ecs_backend.id]
+#     security_groups = [aws_security_group.ecs_service_security_group.id]
 #   }
 
 #   egress {
