@@ -1,4 +1,5 @@
 region = "us-west-2"
+stage = "prod"
 project_name = "fullstack-web-app-template"
 availability_zones = "us-west-2a,us-west-2b"
 route53_hosted_zone_id = "Z09135969OKSF2W7HIYN"

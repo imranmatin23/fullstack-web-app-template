@@ -2,6 +2,10 @@ variable "region" {
   description = "The AWS region to create resources in."
 }
 
+variable "stage" {
+  description = "Deployment stage (dev, alpha, beta, prod)"
+}
+
 variable "project_name" {
   description = "Project name to use in resource names"
 }
@@ -10,7 +14,7 @@ variable "availability_zones" {
   description = "Availability zones"
 }
 
-variable "ecs_prod_backend_retention_days" {
+variable "ecs_backend_retention_days" {
   description = "Retention period for backend logs"
   default     = 30
 }

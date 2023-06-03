@@ -1,24 +1,24 @@
 # Cluster
-resource "aws_ecs_cluster" "prod" {
-  name = "prod"
+resource "aws_ecs_cluster" "ecs_cluster" {
+  name = "${var.project_name}-${var.stage}-ecs-cluster"
 }
 
 # Task Definition
-resource "aws_ecs_task_definition" "prod_backend_web" {
+resource "aws_ecs_task_definition" "ecs_task_definition" {
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu                      = 256
   memory                   = 512
 
-  family = "backend-web"
+  family = "${var.project_name}-${var.stage}-task-definition"
   container_definitions = templatefile(
     "templates/backend_container.json.tpl",
     {
       region     = var.region
-      name       = "prod-backend-web"
+      name       = "${var.project_name}-${var.stage}"
       image      = aws_ecr_repository.backend.repository_url
-      log_group  = aws_cloudwatch_log_group.prod_backend.name
-      log_stream = aws_cloudwatch_log_stream.prod_backend_web.name
+      log_group  = aws_cloudwatch_log_group.cw_log_group.name
+      log_stream = aws_cloudwatch_log_stream.cw_log_stream.name
       secret_key  = var.secret_key
       debug = var.debug
       cors_origin_allow_all = var.cors_origin_allow_all
@@ -33,15 +33,15 @@ resource "aws_ecs_task_definition" "prod_backend_web" {
       sql_port = var.sql_port
     },
   )
-  execution_role_arn = aws_iam_role.ecs_task_execution.arn
-  task_role_arn      = aws_iam_role.prod_backend_task.arn
+  execution_role_arn = aws_iam_role.ecs_task_execution_iam_role.arn
+  task_role_arn      = aws_iam_role.ecs_task_task_iam_role.arn
 }
 
 # Service
-resource "aws_ecs_service" "prod_backend_web" {
-  name                               = "prod-backend-web"
-  cluster                            = aws_ecs_cluster.prod.id
-  task_definition                    = aws_ecs_task_definition.prod_backend_web.arn
+resource "aws_ecs_service" "ecs_service" {
+  name                               = "${var.project_name}-${var.stage}-ecs-service"
+  cluster                            = aws_ecs_cluster.ecs_cluster.id
+  task_definition                    = aws_ecs_task_definition.ecs_task_definition.arn
   desired_count                      = 1
   deployment_minimum_healthy_percent = 50
   deployment_maximum_percent         = 200
@@ -49,28 +49,28 @@ resource "aws_ecs_service" "prod_backend_web" {
   scheduling_strategy                = "REPLICA"
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.prod_backend.arn
-    container_name   = "prod-backend-web"
+    target_group_arn = aws_lb_target_group.backend_target_group.arn
+    container_name   = "${var.project_name}-${var.stage}"
     container_port   = 80
   }
 
   network_configuration {
-    security_groups  = [aws_security_group.prod_ecs_backend.id]
-    subnets          = [aws_subnet.prod_public_1.id, aws_subnet.prod_public_2.id]
+    security_groups  = [aws_security_group.ecs_service_security_group.id]
+    subnets          = [aws_subnet.public_subnet_1.id, aws_subnet.public_subnet_2.id]
     assign_public_ip = true
   }
 }
 
 # Security Group
-resource "aws_security_group" "prod_ecs_backend" {
-  name        = "prod-ecs-backend"
-  vpc_id      = aws_vpc.prod.id
+resource "aws_security_group" "ecs_service_security_group" {
+  name        = "${var.project_name}-${var.stage}-ecs-service-security-group"
+  vpc_id      = aws_vpc.vpc.id
 
   ingress {
     from_port       = 0
     to_port         = 0
     protocol        = "-1"
-    security_groups = [aws_security_group.prod_lb.id]
+    security_groups = [aws_security_group.alb_security_group.id]
   }
 
   egress {
@@ -82,8 +82,8 @@ resource "aws_security_group" "prod_ecs_backend" {
 }
 
 # IAM roles and policies
-resource "aws_iam_role" "prod_backend_task" {
-  name = "prod-backend-task"
+resource "aws_iam_role" "ecs_task_task_iam_role" {
+  name = "${var.project_name}-${var.stage}-ecs-task-task-iam-role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17",
@@ -100,8 +100,8 @@ resource "aws_iam_role" "prod_backend_task" {
   })
 }
 
-resource "aws_iam_role" "ecs_task_execution" {
-  name = "ecs-task-execution"
+resource "aws_iam_role" "ecs_task_execution_iam_role" {
+  name = "${var.project_name}-${var.stage}-ecs-task-execution-iam-role"
 
   assume_role_policy = jsonencode(
     {
@@ -121,17 +121,17 @@ resource "aws_iam_role" "ecs_task_execution" {
 }
 
 resource "aws_iam_role_policy_attachment" "ecs-task-execution-role-policy-attachment" {
-  role       = aws_iam_role.ecs_task_execution.name
+  role       = aws_iam_role.ecs_task_execution_iam_role.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }
 
 # Cloudwatch Logs
-resource "aws_cloudwatch_log_group" "prod_backend" {
-  name              = "prod-backend"
-  retention_in_days = var.ecs_prod_backend_retention_days
+resource "aws_cloudwatch_log_group" "cw_log_group" {
+  name              = "${var.project_name}-${var.stage}-cw-log-group"
+  retention_in_days = var.ecs_backend_retention_days
 }
 
-resource "aws_cloudwatch_log_stream" "prod_backend_web" {
-  name           = "prod-backend-web"
-  log_group_name = aws_cloudwatch_log_group.prod_backend.name
+resource "aws_cloudwatch_log_stream" "cw_log_stream" {
+  name           = "${var.project_name}-${var.stage}-cw-log-stream"
+  log_group_name = aws_cloudwatch_log_group.cw_log_group.name
 }

@@ -11,11 +11,11 @@ on:
 
 env:
   AWS_REGION: us-west-2
-  ECR_REPOSITORY: fullstack-web-app-template-backend
-  TASK_DEFINITION: backend-web
-  CONTAINER_NAME: prod-backend-web
-  ECS_CLUSTER: prod
-  ECS_SERVICE: prod-backend-web
+  ECR_REPOSITORY: fullstack-web-app-template-prod-backend
+  TASK_DEFINITION: fullstack-web-app-template-prod-task-definition
+  CONTAINER_NAME: fullstack-web-app-template-prod
+  ECS_CLUSTER: fullstack-web-app-template-prod-ecs-cluster
+  ECS_SERVICE: fullstack-web-app-template-prod-ecs-cluster
 
 permissions:
   id-token: write # This is required for requesting the JWT
