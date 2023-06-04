@@ -9,7 +9,7 @@ You can access the frontend at https://template.imranmatin.com and the backend a
 ![High Level Architecture](images/high-level-architecture.png)
 
 <div style="text-align:center">
-  <a href="https://lucid.app/lucidchart/61862a22-6730-4e64-aada-cd3617d847a3/edit?viewport_loc=-613%2C-1072%2C3552%2C1902%2C0_0&invitationId=inv_61387a4a-f09a-4db2-b2ba-9c67d432c55f">High Level Architecture Diagram</a>
+  <a href="https://lucid.app/lucidchart/f793f794-16cb-4f11-a141-57211f60e8f3/edit?viewport_loc=-1317%2C-1314%2C4992%2C2442%2C0_0&invitationId=inv_6dfb9991-fb70-47f7-9ed5-fc6efa87ec8f">High Level Architecture Diagram</a>
 </div>
 
 ## Environments

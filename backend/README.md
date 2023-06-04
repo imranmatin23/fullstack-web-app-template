@@ -1,6 +1,20 @@
 # Backend
 
-The backend was created using the `django-admin` CLI. To run the backend locally, set the environment variables in `.env`.
+The backend was created using the `django-admin` CLI. To run the backend locally, set the environment variables in the `.env` file.
+
+```bash
+SECRET_KEY="HNj3ykMBbsrvgLmKwvcwLceu"
+DEBUG=True
+CORS_ORIGIN_ALLOW_ALL=True
+ALLOWED_HOSTS="localhost 127.0.0.1 [::1]"
+DATABASE_TYPE="postgres"
+SQL_ENGINE="django.db.backends.postgresql"
+SQL_DATABASE="django_database"
+SQL_USER="django_user"
+SQL_PASSWORD="django_password"
+SQL_HOST="db"
+SQL_PORT="5432"
+```
 
 ## Available Commands
 
